@@ -9,7 +9,9 @@
 	p._initialize = p.initialize;
 	p.initialize = function() {
 	    this._initialize();
-		this.graphics.beginFill('green').drawCircle(0, 0, 25,25);
+		this.graphics.beginFill('green').drawCircle(0, 0, 25).endFill();
+		this.regX = 12.5;
+		this.regY = 12.5;
 	}
 	p.fire = function(targetX,targetY){
 		this.z = 0;
@@ -28,12 +30,12 @@
 	}
 	p.handleTick = function(event) {
 		var scale = p.fl/(p.fl+this.z);
-		console.log(scale);
+		//console.log(scale);
 		if (scale<.09) {
 			//
 			this.x = this.targetX;
 			this.y= this.targetY;
-			console.log('hit');
+			//console.log('hit');
 			this.dispatchEvent('hit');
 			this.kill();
 			//
@@ -44,8 +46,5 @@
 			this.scaleX = this.scaleY=.5*scale+.2;
 		}
 	}
-
 	window.Puck = Puck;
 }());
-
-//EventDispatcher.initialize(Puck.prototype)

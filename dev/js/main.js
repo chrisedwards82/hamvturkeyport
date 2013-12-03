@@ -44,40 +44,31 @@ var Game = {
 		
 	},
 	onPuckContact: function (puck){
-		console.log('shoot!');
-		
+		//console.log('shoot!');
 		var pt = this.goal.globalToLocal(puck.x,puck.y);
 		this.regX = this.regY = 50;
+		var arr = this.goal.getObjectsUnderPoint(pt.x,pt.y);
+		
 		//console.log(pt);
-		console.log(puck.width,puck.height)
 		if(this.ham.hitTest(pt.x,pt.y)){
 			alert('save by the ham');
-		}else if(this.goal.crossbar.hitTest(pt.x,pt.y)){
-			
-			pt = this.goal.crossbar.globalToLocal(puck.x,puck.y);
-			alert('off the crossbar');
 		}else {
-			alert('goal!');
+			switch(arr[0]){
+				case this.goal.right_crossbar:
+					alert('wide right');
+				break;
+				case this.goal.left_crossbar:
+					alert('wide left');
+				break;
+				case this.goal.top_crossbar:
+					alert('off the crossbar');
+				break;
+				default:
+					alert('goal!!!!');
+				break;
+			}
 		}
 		
-		return;
-		switch(puck){
-			case this.ham:
-				console.log('save by the ham!');
-			break;
-			case this.goal.top_crossbar:
-				console.log('off the top crossbar!');
-			break;
-			case this.goal.right_crossbar:
-				console.log('off the right crossbar!');
-			break;
-			case this.goal.left_crossbar:
-				console.log('off left crossbar!');
-			break;
-			case this.goal.net:
-				console.log('goal!')
-			break;
-		}
 	},
 	startGame:function(){
 		createjs.Ticker.setFPS(60);
