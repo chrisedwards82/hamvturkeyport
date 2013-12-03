@@ -1,0 +1,225 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+/* line 9, ../sass/bp/_bp.scss */
+html,
+button,
+input,
+select,
+textarea {
+  color: #222;
+}
+
+/* line 13, ../sass/bp/_bp.scss */
+body {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+/* line 18, ../sass/bp/_bp.scss */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/* line 23, ../sass/bp/_bp.scss */
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/* line 28, ../sass/bp/_bp.scss */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* line 37, ../sass/bp/_bp.scss */
+img {
+  vertical-align: middle;
+}
+
+/* line 41, ../sass/bp/_bp.scss */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 47, ../sass/bp/_bp.scss */
+textarea {
+  resize: vertical;
+}
+
+/* line 51, ../sass/bp/_bp.scss */
+.chromeframe {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+/* ==========================================================================
+   End author's custom styles
+   ========================================================================== */
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/* line 5, ../sass/bp/_helpers.scss */
+.ir {
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  *text-indent: -9999px;
+}
+
+/* line 12, ../sass/bp/_helpers.scss */
+.ir:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 150%;
+}
+
+/* line 19, ../sass/bp/_helpers.scss */
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+/* line 24, ../sass/bp/_helpers.scss */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* line 36, ../sass/bp/_helpers.scss */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+/* line 45, ../sass/bp/_helpers.scss */
+.invisible {
+  visibility: hidden;
+}
+
+/* line 50, ../sass/bp/_helpers.scss */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+/* line 55, ../sass/bp/_helpers.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 59, ../sass/bp/_helpers.scss */
+.clearfix {
+  *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+@media print {
+  /* line 6, ../sass/bp/_print.scss */
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* line 14, ../sass/bp/_print.scss */
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  /* line 18, ../sass/bp/_print.scss */
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  /* line 22, ../sass/bp/_print.scss */
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+   * Don't show links for images, or javascript/internal links
+   */
+  /* line 32, ../sass/bp/_print.scss */
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* line 37, ../sass/bp/_print.scss */
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /* line 42, ../sass/bp/_print.scss */
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */
+  }
+
+  /* line 47, ../sass/bp/_print.scss */
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  /* line 51, ../sass/bp/_print.scss */
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+}
+
+  /* line 61, ../sass/bp/_print.scss */
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* line 67, ../sass/bp/_print.scss */
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
