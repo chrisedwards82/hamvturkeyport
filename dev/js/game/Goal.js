@@ -19,7 +19,7 @@
 		var bar = 5;
 		if(barWidth) bar = barWidth;
 		this.net = new createjs.Shape();
-		this.net.graphics.beginFill('gray').drawRect(0, 0, width,height);
+		this.net.graphics.beginFill('gray').drawRect(barWidth, barWidth, width-barWidth*2,height-barWidth);
 		this.addChild(this.net);
 		this.crossbar = this.addChild(new createjs.Container());
 		this.left_crossbar = this.crossbar.addChild(new createjs.Shape());		

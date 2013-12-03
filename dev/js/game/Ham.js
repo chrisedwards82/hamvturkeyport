@@ -15,7 +15,7 @@
 	    this.Container_initialize();
 	 	this.range = range;
 		this.background = new createjs.Shape();
-		this.background.graphics.beginFill(color).drawRect(0, 0, 50,50);
+		this.background.graphics.beginFill(color).drawRect(0, 0, 60,80);
 		this.addChild(this.background);
 		this.on("tick", this.handleTick);
 		this.mouseChildren = false;

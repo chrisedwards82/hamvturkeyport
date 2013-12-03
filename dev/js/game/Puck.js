@@ -9,15 +9,13 @@
 	p._initialize = p.initialize;
 	p.initialize = function() {
 	    this._initialize();
-		this.graphics.beginFill('green').drawCircle(0, 0, 15,15);
+		this.graphics.beginFill('green').drawCircle(0, 0, 25,25);
 	}
-	p.fire = function(initX,initY,targetX,targetY){
+	p.fire = function(targetX,targetY){
 		this.z = 0;
 		this.speed = 150; //550
-		this.x = initX;
-		this.y = initY;
-		this.diffX = targetX-initX;
-		this.diffY = targetY - initY;
+		this.diffX = targetX -this.x;
+		this.diffY = targetY - this.y;
 		this.targetX = targetX;
 		this.targetY = targetY;
 		if(this._onTick) this.off("tick", this._onTick);
@@ -31,7 +29,6 @@
 	p.handleTick = function(event) {
 		var scale = p.fl/(p.fl+this.z);
 		console.log(scale);
-		
 		if (scale<.09) {
 			//
 			this.x = this.targetX;
@@ -46,7 +43,6 @@
 			this.y = this.targetY-this.diffY*scale;
 			this.scaleX = this.scaleY=.5*scale+.2;
 		}
-		
 	}
 
 	window.Puck = Puck;
