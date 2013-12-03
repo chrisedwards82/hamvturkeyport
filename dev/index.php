@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="css/main.css">
 		
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-		<?php include 'includes/_easeljs.php' ?>
 		<script>
 		
 		</script>
@@ -32,6 +31,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
+		<?php include 'includes/_easeljs.php' ?>
+		<?php include 'includes/_gamejs.php' ?>
         <script src="js/main.js"></script>
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
