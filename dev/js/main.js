@@ -11,8 +11,8 @@ var Game = {
 	init:function(){
 		this.stage = new createjs.Stage("gameCanvas");
 		this.turkey = this.stage.addChild(new Turkey('blue'));
-		this.turkey.x = 360;
-		this.turkey.y = 300;
+		this.turkey.x = 195;
+		this.turkey.y = 100;
 		this.goal = new Goal(200,100,12);
 		this.goal.x = 100;
 		this.goal.y = 60;
@@ -40,6 +40,7 @@ var Game = {
 			p.off('hit',p_lis);
 		});
 		//to be called after shot animation
+		this.turkey.shoot();
 		p.fire(event.stageX,event.stageY);
 		
 	},
