@@ -33,6 +33,7 @@
         <script src="js/plugins.js"></script>
 		<?php include 'includes/_easeljs.php' ?>
 		<?php include 'includes/_gamejs.php' ?>
+		<?php include 'includes/_preloadjs.php' ?>
         <script src="js/main.js"></script>
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

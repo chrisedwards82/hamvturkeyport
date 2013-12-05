@@ -7,6 +7,7 @@ var Game = {
 	turkey:null,
 	goal:null,
 	ham:null,
+	loader:null,
 	
 	init:function(){
 		this.stage = new createjs.Stage("gameCanvas");
@@ -72,10 +73,22 @@ var Game = {
 	},
 	loadAssets:function(){
 		//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
-		this.onLoadComplete();
+		manifest = [
+			{src:"img/sprite_turkey.png",id:"turkey"}
+		];
+		this.loader = new createjs.LoadQueue(false);
+		
+		var lis = this.loader.addEventListener("complete", function(event){
+			Game.loader.removeEventListener('complete',lis);
+			Game.onAssetsLoaded(event);
+		});
+		this.loader.loadManifest(manifest);
+		
 	},
-	onLoadComplete:function(){
-		this.turkey.buildSprite('img/sprite_turkey.png');
+	onAssetsLoaded:function(event){
+		console.log(event);
+		
+		this.turkey.buildSprite(Game.loader.getResult("turkey"));
 		this.startGame();
 	},
 	startGame:function(){
