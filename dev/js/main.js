@@ -40,8 +40,12 @@ var Game = {
 			p.off('hit',p_lis);
 		});
 		//to be called after shot animation
-		this.turkey.shoot();
-		p.fire(event.stageX,event.stageY);
+		this.turkey.shoot(
+			function(){
+				p.fire(event.stageX,event.stageY);
+			}
+		);
+		
 		
 	},
 	onPuckContact: function (puck){

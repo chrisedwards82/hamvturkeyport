@@ -25,7 +25,10 @@
 		
 	}
 	p.kill = function() {
-		if(this._onTick) this.off("tick", this._onTick);
+		if(this._onTick) {
+			this.off("tick", this._onTick);
+			delete this._onTick;
+		}
 		if(this.parent) this.parent.removeChild(this);
 	}
 	p.handleTick = function(event) {

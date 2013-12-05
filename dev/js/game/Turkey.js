@@ -23,7 +23,8 @@
 		var ss = new createjs.SpriteSheet( {
 			"animations":{
 				"rest":[0,18],
-				"shoot":[19,46]
+				'windup':[19,24],
+				"shoot":[24,46]
 			},
 			"images":['img/sprite_turkey.png'],
 			"frames":{
@@ -35,9 +36,11 @@
 			}
 		});
 		ss.getAnimation('rest').speed = .5;
+		ss.getAnimation('shoot').speed = .5;
 		ss.getAnimation('shoot').speed = 1;
 		
 		ss.getAnimation('rest').next = 'rest';
+		ss.getAnimation('windup').next = 'shoot';
 		ss.getAnimation('shoot').next = 'rest';
 		var sprite = new createjs.Sprite(ss,'rest');
 		this.sprite = sprite;
@@ -46,8 +49,15 @@
 	p.handleTick = function(event) {       
 		//p.alpha = Math.cos(p.count++*0.1)*0.4+0.6;
 	}
-	p.shoot = function(){
-		this.sprite.gotoAndPlay('shoot');
+	p.shoot = function(callback){
+		var sprite = this.sprite;
+		sprite.gotoAndPlay('windup');
+		var lis = this.sprite.on("animationend", function(event){
+			if(event.name=='windup'){
+				callback();
+			}
+			sprite.off('animationend',lis);
+		});
 	}
  
 	window.Turkey = Turkey;
