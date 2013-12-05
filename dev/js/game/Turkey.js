@@ -16,17 +16,15 @@
 		this.background = new createjs.Shape();
 		this.background.graphics.beginFill(color).drawRect(0, 0, 10,10);
 		this.addChild(this.background);
-		this.buildSprite();
-		this.on("tick", this.handleTick);	
 	}
-	p.buildSprite = function() {
+	p.buildSprite = function(img) {
 		var ss = new createjs.SpriteSheet( {
 			"animations":{
 				"rest":[0,18],
 				'windup':[19,24],
 				"shoot":[24,46]
 			},
-			"images":['img/sprite_turkey.png'],
+			"images":[img],
 			"frames":{
 				"regX":0,
 				"regY":0,
@@ -38,7 +36,6 @@
 		ss.getAnimation('rest').speed = .5;
 		ss.getAnimation('shoot').speed = .5;
 		ss.getAnimation('shoot').speed = 1;
-		
 		ss.getAnimation('rest').next = 'rest';
 		ss.getAnimation('windup').next = 'shoot';
 		ss.getAnimation('shoot').next = 'rest';
@@ -46,9 +43,7 @@
 		this.sprite = sprite;
 		this.addChild(sprite);
 	}
-	p.handleTick = function(event) {       
-		//p.alpha = Math.cos(p.count++*0.1)*0.4+0.6;
-	}
+
 	p.shoot = function(callback){
 		var sprite = this.sprite;
 		sprite.gotoAndPlay('windup');

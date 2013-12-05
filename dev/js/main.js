@@ -16,17 +16,12 @@ var Game = {
 		this.goal = new Goal(200,100,12);
 		this.goal.x = 100;
 		this.goal.y = 60;
-		this.goal.on('click', 
-			function(event){
-				Game.onShot(event);
-			}
-		);
 		this.stage.addChildAt(this.goal,0);
 		this.ham =  this.goal.addChild(new Ham('red',200));
 		this.ham.x = 0;
 		this.ham.y = 20;
 		//
-		this.startGame();
+		this.loadAssets();
 	},
 	onShot:function(event){
 		console.log(event);
@@ -75,7 +70,20 @@ var Game = {
 		}
 		
 	},
+	loadAssets:function(){
+		//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
+		this.onLoadComplete();
+	},
+	onLoadComplete:function(){
+		this.turkey.buildSprite('img/sprite_turkey.png');
+		this.startGame();
+	},
 	startGame:function(){
+		this.goal.on('click', 
+			function(event){
+				Game.onShot(event);
+			}
+		);
 		createjs.Ticker.setFPS(60);
 		createjs.Ticker.addEventListener("tick", this.stage);
 	}
