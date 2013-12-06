@@ -43,9 +43,8 @@ this.hamvturkey = this.hamvturkey || {};
 						p.fire(event.stageX,event.stageY);
 					}
 				);
-				//play the sound here
-
-
+				console.log(this.loader.getResult("sfx_shoot"));
+				createjs.Sound.play(this.loader.getResult("sfx_shoot").src);
 			},
 			onPuckContact: function (event){
 				//console.log('shoot!');
@@ -75,14 +74,22 @@ this.hamvturkey = this.hamvturkey || {};
 			},
 			loadAssets:function(){
 				//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
+				var imgPath = 'assets/img/'
 				manifest = [
-					{src:"img/sprite_turkey.png",id:"turkey"}
+					{src:imgPath+"sprite_turkey.png",id:"turkey"}
 				];
+				var audioPath = 'assets/sound/'
 				if(createjs.Sound.initializeDefaultPlugins()){
 					//add audio to manifest
-					//manifest.push();
+					manifest.push(
+						{id:'sfx_shoot', src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'}
+						
+					);
+					//createjs.Sound.registerManifest(manifest);					
 				}
+				createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
 				this.loader = new createjs.LoadQueue(false);
+				this.loader.installPlugin(createjs.Sound);
 				this.loader.addEventListener("complete", createjs.proxy(this.onAssetsLoaded,this));
 				this.loader.loadManifest(manifest);
 			},
@@ -102,11 +109,10 @@ this.hamvturkey = this.hamvturkey || {};
 	hamvturkey.Game = Game;
 }());
 
-
-var game, isMobile;
+var game, isTouchDevice = false
 $(document).ready(function(){
 	//alert("let's do it");
-	if(isMobile){
+	if(isTouchDevice){
 		//launch game on touch prompt
 	} else {
 		game = new hamvturkey.Game();
