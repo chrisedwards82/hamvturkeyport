@@ -76,7 +76,10 @@ this.hamvturkey = this.hamvturkey || {};
 							puck.deflectUp();
 						break;
 						default:
-							alert('goal!!!!');
+							//alert('goal!!!!');
+							this.goal.addChildAt(puck,this.goal.getChildIndex(this.ham)-1);
+							puck.x -=this.goal.x;
+							puck.y-=this.goal.y;
 						break;
 					}
 				}
