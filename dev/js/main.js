@@ -32,7 +32,7 @@ this.hamvturkey = this.hamvturkey || {};
 				console.log(event);
 				var stageX = event.stageX;
 				var stageY = event.stageY;
-				var p = this.stage.addChild(new Puck());
+				var p = this.stage.addChild(new Puck(this.loader.getResult('puck').src));
 				p.x = 300;
 				p.y = 345;
 				
@@ -80,9 +80,12 @@ this.hamvturkey = this.hamvturkey || {};
 			},
 			loadAssets:function(){
 				//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
+				//compress pngs: https://tinypng.com/
+				//modify sounds: audacity
 				var imgPath = 'assets/img/', audioPath = 'assets/sound/';
 				manifest = [
-					{src:imgPath+"sprite_turkey.png",id:"turkey"}
+					{src:imgPath+"sprite_turkey.png",id:"turkey"},
+					{src:imgPath+"sprite_fruitcake.png",id:"puck"}
 				];
 				this.loader = new createjs.LoadQueue(false);
 				this.sound = new hamvturkey.SoundManager(this.loader);
@@ -123,12 +126,8 @@ $(document).ready(function(){
 	} else {
 		game = new hamvturkey.Game();
 	}
-	//Game.init();
 });
-
-$(window).load(function(){
-	
-});
+//$(window).load(function(){});
 
 
 

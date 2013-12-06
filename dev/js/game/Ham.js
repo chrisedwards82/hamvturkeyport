@@ -9,6 +9,7 @@
 	p.speed = .1;
 	p.range = 100;
 	p.background;
+	p.bitmap;
 	//
 	p.Container_initialize = p.initialize;
 	p.initialize = function(color,range) {
@@ -17,8 +18,13 @@
 		this.background = new createjs.Shape();
 		this.background.graphics.beginFill(color).drawRect(0, 0, 60,80);
 		this.addChild(this.background);
+		
 		this.on("tick", this.handleTick);
 		this.mouseChildren = false;
+	}
+	p.setBitamp = function(bmp){
+		this.bitmap = new createjs.Bitmap(bmp);
+		this.addChild(this.bitmap);
 	}
 	p.handleTick = function(event) {
 		var r = this.range*.5   

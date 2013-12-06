@@ -1,15 +1,15 @@
 (function() {
 
-	var Puck = function() {
-	  this.initialize();
+	var Puck = function(bmp) {
+	  this.initialize(bmp);
 	}
-	var p = Puck.prototype = new createjs.Shape();
+	var p = Puck.prototype = new createjs.Bitmap();
 	p.fl = 250;
 	//
 	p._initialize = p.initialize;
-	p.initialize = function() {
-	    this._initialize();
-		this.graphics.beginFill('green').drawCircle(0, 0, 25).endFill();
+	p.initialize = function(bmp) {
+	    this._initialize(bmp);
+		//this.graphics.beginFill('green').drawCircle(0, 0, 25).endFill();
 		this.regX = 12.5;
 		this.regY = 12.5;
 	}
@@ -46,7 +46,7 @@
 			this.z += this.speed;
 			this.x = this.targetX-this.diffX*scale;
 			this.y = this.targetY-this.diffY*scale;
-			this.scaleX = this.scaleY=.5*scale+.2;
+			this.scaleX = this.scaleY=.8*scale+.2;
 		}
 	}
 	window.Puck = Puck;

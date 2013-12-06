@@ -6,16 +6,13 @@
 	var p = Turkey.prototype = new createjs.Container();
  	
 	p.count = 0;
-	p.background;
 	//
 	p.Container_initialize = p.initialize;
 	
 	
 	p.initialize = function(color) {
 		this.Container_initialize();
-		this.background = new createjs.Shape();
-		this.background.graphics.beginFill(color).drawRect(0, 0, 10,10);
-		this.addChild(this.background);
+	
 	}
 	p.buildSprite = function(img) {
 		var ss = new createjs.SpriteSheet( {
