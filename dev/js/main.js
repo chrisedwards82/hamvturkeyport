@@ -11,6 +11,7 @@ this.hamvturkey = this.hamvturkey || {};
 			goal:null,
 			ham:null,
 			loader:null,
+			sound:null,
 
 			init:function(){
 				this.stage = new createjs.Stage("gameCanvas");
@@ -43,8 +44,8 @@ this.hamvturkey = this.hamvturkey || {};
 						p.fire(event.stageX,event.stageY);
 					}
 				);
-				console.log(this.loader.getResult("sfx_shoot"));
-				createjs.Sound.play(this.loader.getResult("sfx_shoot").src);
+				//console.log(this.loader.getResult("sfx_shoot"));
+				this.sound.playSFX(hamvturkey.SoundManager.SHOOT);
 			},
 			onPuckContact: function (event){
 				//console.log('shoot!');
@@ -74,22 +75,21 @@ this.hamvturkey = this.hamvturkey || {};
 			},
 			loadAssets:function(){
 				//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
-				var imgPath = 'assets/img/'
+				var imgPath = 'assets/img/', audioPath = 'assets/sound/';
 				manifest = [
 					{src:imgPath+"sprite_turkey.png",id:"turkey"}
 				];
-				var audioPath = 'assets/sound/'
+				this.loader = new createjs.LoadQueue(false);
+				this.sound = new hamvturkey.SoundManager(this.loader);
 				if(createjs.Sound.initializeDefaultPlugins()){
 					//add audio to manifest
+					this.sound.soundEnabled = true;
 					manifest.push(
-						{id:'sfx_shoot', src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'}
-						
+						{id:hamvturkey.SoundManager.SHOOT, src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'}		
 					);
-					//createjs.Sound.registerManifest(manifest);					
+					createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
+					this.loader.installPlugin(createjs.Sound);					
 				}
-				createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
-				this.loader = new createjs.LoadQueue(false);
-				this.loader.installPlugin(createjs.Sound);
 				this.loader.addEventListener("complete", createjs.proxy(this.onAssetsLoaded,this));
 				this.loader.loadManifest(manifest);
 			},
