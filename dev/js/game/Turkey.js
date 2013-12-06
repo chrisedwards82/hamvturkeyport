@@ -20,17 +20,17 @@
 	p.buildSprite = function(img) {
 		var ss = new createjs.SpriteSheet( {
 			"animations":{
-				"rest":[0,18],
-				'windup':[19,24],
-				"shoot":[24,46]
+				"rest":[1,19],
+				'windup':[20,25],
+				"shoot":[25,47]
 			},
 			"images":[img],
 			"frames":{
 				"regX":0,
 				"regY":0,
-				"height":267,
-				"width":278,
-				"count":46
+				"height":280,
+				"width":281,
+				"count":47
 			}
 		});
 		ss.getAnimation('rest').speed = .5;

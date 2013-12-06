@@ -4,6 +4,7 @@ this.hamvturkey = this.hamvturkey || {};
 	  this.initialize(loader);
 	}
 	SoundManager.SHOOT = 'sfx_shoot';
+	SoundManager.BOING = 'sfx_boing';
 	var p = SoundManager.prototype = {
 		loader:null,
 		soundEnabled:false
@@ -17,6 +18,9 @@ this.hamvturkey = this.hamvturkey || {};
 		if(this.soundEnabled){
 			createjs.Sound.play(this.loader.getResult(id).src);
 		}
+	}
+	p.boing = function(){
+		this.playSFX(SoundManager.BOING)
 	}
 	
 

@@ -58,13 +58,18 @@ this.hamvturkey = this.hamvturkey || {};
 				}else {
 					switch(arr[0]){
 						case this.goal.right_crossbar:
-							alert('wide right');
+							//alert('wide right');
+							this.sound.boing();
 						break;
 						case this.goal.left_crossbar:
-							alert('wide left');
+							//alert('wide left');
+							this.sound.boing();
+							
 						break;
 						case this.goal.top_crossbar:
-							alert('off the crossbar');
+							//alert('off the crossbar');
+							this.sound.boing();
+							
 						break;
 						default:
 							alert('goal!!!!');
@@ -85,7 +90,8 @@ this.hamvturkey = this.hamvturkey || {};
 					//add audio to manifest
 					this.sound.soundEnabled = true;
 					manifest.push(
-						{id:hamvturkey.SoundManager.SHOOT, src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'}		
+						{id:hamvturkey.SoundManager.SHOOT, src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'},
+						{id:hamvturkey.SoundManager.BOING, src:audioPath+'boing.mp3|'+audioPath+'boing.ogg'}
 					);
 					createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
 					this.loader.installPlugin(createjs.Sound);					
