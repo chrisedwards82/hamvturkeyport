@@ -76,6 +76,10 @@ var Game = {
 		manifest = [
 			{src:"img/sprite_turkey.png",id:"turkey"}
 		];
+		if(createJS.Sound.initializeDefaultPlugins()){
+			//add audio to manifest
+			//manifest.push();
+		}
 		this.loader = new createjs.LoadQueue(false);
 		
 		var lis = this.loader.addEventListener("complete", function(event){
@@ -87,7 +91,7 @@ var Game = {
 	},
 	onAssetsLoaded:function(event){
 		console.log(event);
-		
+		//TODO wrap this all in a click/touch to play event
 		this.turkey.buildSprite(Game.loader.getResult("turkey"));
 		this.startGame();
 	},

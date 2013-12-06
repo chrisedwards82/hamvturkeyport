@@ -32,8 +32,10 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
 		<?php include 'includes/_easeljs.php' ?>
-		<?php include 'includes/_gamejs.php' ?>
 		<?php include 'includes/_preloadjs.php' ?>
+		<?php include 'includes/_soundjs.php' ?>
+		<?php include 'includes/_gamejs.php' ?>
+	
         <script src="js/main.js"></script>
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
