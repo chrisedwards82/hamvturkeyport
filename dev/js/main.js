@@ -56,20 +56,24 @@ this.hamvturkey = this.hamvturkey || {};
 				if(this.ham.hitTest(pt.x,pt.y)){
 					alert('save by the ham');
 				}else {
+					this.stage.addChild(puck);
+					
 					switch(arr[0]){
 						case this.goal.right_crossbar:
 							//alert('wide right');
+							puck.deflectRight();
 							this.sound.boing();
 						break;
 						case this.goal.left_crossbar:
 							//alert('wide left');
 							this.sound.boing();
+							puck.deflectLeft();
 							
 						break;
 						case this.goal.top_crossbar:
 							//alert('off the crossbar');
 							this.sound.boing();
-							
+							puck.deflectUp();
 						break;
 						default:
 							alert('goal!!!!');

@@ -3,6 +3,8 @@
 	var Puck = function(bmp) {
 	  this.initialize(bmp);
 	}
+	var Ease = createjs.Ease;
+	var Tween = createjs.Tween;
 	var p = Puck.prototype = new createjs.Bitmap();
 	p.fl = 250;
 	//
@@ -24,11 +26,15 @@
 		this._onTick = this.on("tick", this.handleTick);
 		
 	}
-	p.kill = function() {
+	p.killTick = function(event) {
 		if(this._onTick) {
 			this.off("tick", this._onTick);
+			this._onTick = null;
 			delete this._onTick;
 		}
+	}
+	p.kill = function(){
+		this.killTick()
 		if(this.parent) this.parent.removeChild(this);
 	}
 	p.handleTick = function(event) {
@@ -40,7 +46,7 @@
 			this.y= this.targetY;
 			//console.log('hit');
 			this.dispatchEvent('hit');
-			this.kill();
+			this.killTick();
 			//
 		} else {
 			this.z += this.speed;
@@ -48,6 +54,36 @@
 			this.y = this.targetY-this.diffY*scale;
 			this.scaleX = this.scaleY=.8*scale+.2;
 		}
+	}
+	p.deflectUp = function(){
+		var scale = 1+Math.random();
+		Tween.get(this).to({
+				x:this.x+Math.random()*50,
+				y:-100,
+				rotation:360+Math.random()*360,
+				scaleX:scale, scaleY:scale
+			},
+			300,Ease.quadOut).call(createjs.proxy(this.kill,this));
+	}
+	p.deflectLeft = function(){
+		var scale = 1+Math.random();
+		Tween.get(this).to({
+				x:-100,
+				y:this.y,
+				rotation:360+Math.random()*360,
+				scaleX:scale, scaleY:scale
+			},
+			300,Ease.quadOut).call(createjs.proxy(this.kill,this));
+		
+	}
+	p.deflectRight = function(){
+		var scale = 1+Math.random();
+		Tween.get(this).to({
+			x:600,
+			y:this.y,
+			rotation:360+Math.random()*360,
+			scaleX:scale, scaleY:scale
+		},300,Ease.quadOut).call(createjs.proxy(this.kill,this));
 	}
 	window.Puck = Puck;
 }());
