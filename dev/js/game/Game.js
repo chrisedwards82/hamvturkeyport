@@ -22,9 +22,9 @@ this.hamvturkey = this.hamvturkey || {};
 				this.goal.x = 248;
 				this.goal.y = 200;
 				this.stage.addChildAt(this.goal,0);
-				this.ham =  this.goal.addChild(new Ham(85));
-				this.ham.x = 0;
-				this.ham.y = 0;
+				this.ham =  this.stage.addChild(new Ham(85));
+				this.ham.x = this.goal.x;
+				this.ham.y = this.goal.y;
 				//
 				this.loadAssets();
 			},
@@ -80,7 +80,7 @@ this.hamvturkey = this.hamvturkey || {};
 						break;
 						default:
 							//alert('goal!!!!');
-							this.goal.addChildAt(puck,this.goal.getChildIndex(this.ham)-1);
+							this.goal.addChild(puck);
 							puck.x -=this.goal.x;
 							puck.y-=this.goal.y;
 							puck.drop(50);
