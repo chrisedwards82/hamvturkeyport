@@ -16,10 +16,11 @@
 	}
 	p.buildSprite = function(img) {
 		var ss = new createjs.SpriteSheet( {
+			"framerate":24,
 			"animations":{
 				"rest":[1,19],
-				'windup':[20,25],
-				"shoot":[25,47]
+				'windup':[19,25],
+				"shoot":[25,46]
 			},
 			"images":[img],
 			"frames":{
@@ -30,9 +31,9 @@
 				"count":47
 			}
 		});
-		ss.getAnimation('rest').speed = .5;
-		ss.getAnimation('shoot').speed = .5;
-		ss.getAnimation('shoot').speed = 1;
+		ss.getAnimation('rest').speed = 1;
+		ss.getAnimation('windup').speed = 1.2;
+		ss.getAnimation('shoot').speed = 1.2;
 		ss.getAnimation('rest').next = 'rest';
 		ss.getAnimation('windup').next = 'shoot';
 		ss.getAnimation('shoot').next = 'rest';

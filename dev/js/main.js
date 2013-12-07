@@ -106,7 +106,9 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.soundEnabled = true;
 					manifest.push(
 						{id:hamvturkey.SoundManager.SHOOT, src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'},
-						{id:hamvturkey.SoundManager.BOING, src:audioPath+'boing.mp3|'+audioPath+'boing.ogg'},
+						{id:hamvturkey.SoundManager.BOING_1, src:audioPath+'boing.mp3|'+audioPath+'boing.ogg'},
+						{id:hamvturkey.SoundManager.BOING_2, src:audioPath+'boing2.mp3|'+audioPath+'boing2.ogg'},
+						{id:hamvturkey.SoundManager.BOING_3, src:audioPath+'boing3.mp3|'+audioPath+'boing3.ogg'},
 						{id:hamvturkey.SoundManager.IMPACT, src:audioPath+'impact.mp3|'+audioPath+'impact.ogg'}
 
 					);
