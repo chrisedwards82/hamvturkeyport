@@ -25,7 +25,7 @@ this.hamvturkey = this.hamvturkey || {};
 	}
 	p.boing = function(){
 		var i = Math.round(Math.random()*(this.boings.length-1));
-		console.log(i);
+		//console.log(i);
 		this.playSFX(this.boings[i])
 	}
 	p.impact = function(){
