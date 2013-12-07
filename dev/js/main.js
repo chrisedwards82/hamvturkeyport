@@ -24,7 +24,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.stage.addChildAt(this.goal,0);
 				this.ham =  this.goal.addChild(new Ham('red',200));
 				this.ham.x = 0;
-				this.ham.y = 20;
+				this.ham.y = 0;
 				//
 				this.loadAssets();
 			},
@@ -54,7 +54,10 @@ this.hamvturkey = this.hamvturkey || {};
 				var arr = this.goal.getObjectsUnderPoint(pt.x,pt.y);
 				//console.log(pt);
 				if(this.ham.hitTest(pt.x,pt.y)){
-					alert('save by the ham');
+					//alert('save by the ham');
+					this.ham.save();
+					this.sound.impact();
+					puck.drop(180);
 				}else {
 					this.stage.addChild(puck);
 					
@@ -80,6 +83,7 @@ this.hamvturkey = this.hamvturkey || {};
 							this.goal.addChildAt(puck,this.goal.getChildIndex(this.ham)-1);
 							puck.x -=this.goal.x;
 							puck.y-=this.goal.y;
+							puck.drop(90);
 						break;
 					}
 				}
@@ -92,6 +96,7 @@ this.hamvturkey = this.hamvturkey || {};
 				var imgPath = 'assets/img/', audioPath = 'assets/sound/';
 				manifest = [
 					{src:imgPath+"sprite_turkey.png",id:"turkey"},
+					{src:imgPath+"sprite_ham.png",id:"ham"},
 					{src:imgPath+"sprite_fruitcake.png",id:"puck"}
 				];
 				this.loader = new createjs.LoadQueue(false);
@@ -101,7 +106,9 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.soundEnabled = true;
 					manifest.push(
 						{id:hamvturkey.SoundManager.SHOOT, src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'},
-						{id:hamvturkey.SoundManager.BOING, src:audioPath+'boing.mp3|'+audioPath+'boing.ogg'}
+						{id:hamvturkey.SoundManager.BOING, src:audioPath+'boing.mp3|'+audioPath+'boing.ogg'},
+						{id:hamvturkey.SoundManager.IMPACT, src:audioPath+'impact.mp3|'+audioPath+'impact.ogg'}
+
 					);
 					createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
 					this.loader.installPlugin(createjs.Sound);					
@@ -113,6 +120,7 @@ this.hamvturkey = this.hamvturkey || {};
 				console.log(event);			
 				//TODO wrap this all in a "click/touch to play" event
 				this.turkey.buildSprite(this.loader.getResult("turkey"));
+				this.ham.buildSprite(this.loader.getResult("ham"));
 				this.startGame();
 			},
 			startGame:function(){

@@ -55,6 +55,13 @@
 			this.scaleX = this.scaleY=.8*scale+.2;
 		}
 	}
+	p.drop = function(targ){
+		Tween.get(this).to({
+				y:targ+Math.random()*10-5,
+				x:this.x+Math.random()*5-2.5
+			},
+			400,Ease.bounceOut);
+	}
 	p.deflectUp = function(){
 		var scale = 1+Math.random();
 		Tween.get(this).to({

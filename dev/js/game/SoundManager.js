@@ -5,6 +5,7 @@ this.hamvturkey = this.hamvturkey || {};
 	}
 	SoundManager.SHOOT = 'sfx_shoot';
 	SoundManager.BOING = 'sfx_boing';
+	SoundManager.IMPACT = 'sfx_impact';
 	var p = SoundManager.prototype = {
 		loader:null,
 		soundEnabled:false
@@ -22,7 +23,9 @@ this.hamvturkey = this.hamvturkey || {};
 	p.boing = function(){
 		this.playSFX(SoundManager.BOING)
 	}
-	
+	p.impact = function(){
+		this.playSFX(SoundManager.IMPACT)
+	}
 
 	hamvturkey.SoundManager = SoundManager;
 }());
