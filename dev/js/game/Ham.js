@@ -25,8 +25,8 @@
 		var ss = new createjs.SpriteSheet( {
 			'framerate':24,
 			"animations":{
-				"rest":[6],
-				'hit':[2,2,3,3,3],
+				"save":[3,7],
+				"rest":[6,6],
 				"dance":[0,3]
 			},
 			"images":[img],
@@ -39,12 +39,11 @@
 			}
 		});
 		ss.getAnimation('dance').speed = .5;
-		ss.getAnimation('hit').speed = 2;
-		ss.getAnimation('hit').next = 'rest';
+		ss.getAnimation('save').speed = 2;
+		ss.getAnimation('save').next = 'rest';
 		ss.getAnimation('dance').next = 'rest';
-		var sprite = new createjs.Sprite(ss,'rest');
-		this.sprite = sprite;
-		sprite.scaleX = sprite.scaleY = .5;
+		this.sprite = new createjs.Sprite(ss,'rest');
+		this.sprite.scaleX = this.sprite.scaleY = .5;
 		this.addChild(this.sprite);
 	}
 	p.handleTick = function(event) {
@@ -53,7 +52,7 @@
 		///	console.log(this.background.x);
 	}
 	p.save = function(){
-		this.sprite.gotoAndPlay('hit');
+		this.sprite.gotoAndPlay('save');
 	}
 	
  

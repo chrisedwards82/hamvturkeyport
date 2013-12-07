@@ -131,6 +131,8 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Ticker.setFPS(60);
 				createjs.Ticker.addEventListener("tick", this.stage);
 				this.goal.on('click',createjs.proxy(this.onShot,this));
+				this.ham.on('click',createjs.proxy(this.onShot,this));
+				
 			}
 			
 	}
