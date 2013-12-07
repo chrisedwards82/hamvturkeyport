@@ -58,6 +58,7 @@ this.hamvturkey = this.hamvturkey || {};
 					this.ham.save();
 					this.sound.impact();
 					puck.drop(270);
+					this.sound.announcer.save();
 				}else {
 					this.stage.addChild(puck);
 					
@@ -84,6 +85,7 @@ this.hamvturkey = this.hamvturkey || {};
 							puck.x -=this.goal.x;
 							puck.y-=this.goal.y;
 							puck.drop(50);
+							this.sound.announcer.scores();
 						break;
 					}
 				}
@@ -106,6 +108,8 @@ this.hamvturkey = this.hamvturkey || {};
 					//add audio to manifest
 					this.sound.soundEnabled = true;
 					manifest.push(
+						{id:hamvturkey.SoundManager.SCORES, src:audioPath+'scores.mp3|'+audioPath+'scores.ogg'},
+						{id:hamvturkey.SoundManager.SAVE, src:audioPath+'save.mp3|'+audioPath+'save.ogg'},
 						{id:hamvturkey.SoundManager.SHOOT, src:audioPath+'shoot.mp3|'+audioPath+'shoot.ogg'},
 						{id:hamvturkey.SoundManager.BOING_1, src:audioPath+'boing.mp3|'+audioPath+'boing.ogg'},
 						{id:hamvturkey.SoundManager.BOING_2, src:audioPath+'boing2.mp3|'+audioPath+'boing2.ogg'},
