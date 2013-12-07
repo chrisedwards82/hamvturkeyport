@@ -6,6 +6,7 @@ this.hamvturkey = this.hamvturkey || {};
 	}
 	Game.prototype = {
 			stage:null,
+			bg:null,
 			turkey:null,
 			goal:null,
 			ham:null,
@@ -14,14 +15,14 @@ this.hamvturkey = this.hamvturkey || {};
 
 			init:function(){
 				this.stage = new createjs.Stage("gameCanvas");
-				this.turkey = this.stage.addChild(new Turkey('blue'));
-				this.turkey.x = 195;
+				this.turkey = this.stage.addChild(new Turkey());
+				this.turkey.x = 250;
 				this.turkey.y = 100;
-				this.goal = new Goal(200,100,12);
-				this.goal.x = 100;
-				this.goal.y = 60;
+				this.goal = new Goal(83,60,7,.01);
+				this.goal.x = 248;
+				this.goal.y = 200;
 				this.stage.addChildAt(this.goal,0);
-				this.ham =  this.goal.addChild(new Ham('red',200));
+				this.ham =  this.goal.addChild(new Ham(85));
 				this.ham.x = 0;
 				this.ham.y = 0;
 				//
@@ -56,7 +57,7 @@ this.hamvturkey = this.hamvturkey || {};
 					//alert('save by the ham');
 					this.ham.save();
 					this.sound.impact();
-					puck.drop(180);
+					puck.drop(270);
 				}else {
 					this.stage.addChild(puck);
 					
@@ -82,7 +83,7 @@ this.hamvturkey = this.hamvturkey || {};
 							this.goal.addChildAt(puck,this.goal.getChildIndex(this.ham)-1);
 							puck.x -=this.goal.x;
 							puck.y-=this.goal.y;
-							puck.drop(90);
+							puck.drop(50);
 						break;
 					}
 				}
@@ -94,6 +95,7 @@ this.hamvturkey = this.hamvturkey || {};
 				//modify sounds: audacity
 				var imgPath = 'assets/img/', audioPath = 'assets/sound/';
 				manifest = [
+					{src:imgPath+"sprite_bg.jpg",id:"bg"},
 					{src:imgPath+"sprite_turkey.png",id:"turkey"},
 					{src:imgPath+"sprite_ham.png",id:"ham"},
 					{src:imgPath+"sprite_fruitcake.png",id:"puck"}
@@ -120,6 +122,7 @@ this.hamvturkey = this.hamvturkey || {};
 			onAssetsLoaded:function(event){
 				console.log(event);			
 				//TODO wrap this all in a "click/touch to play" event
+				this.bg = this.stage.addChildAt(new createjs.Bitmap(this.loader.getResult("bg")),0)
 				this.turkey.buildSprite(this.loader.getResult("turkey"));
 				this.ham.buildSprite(this.loader.getResult("ham"));
 				this.startGame();

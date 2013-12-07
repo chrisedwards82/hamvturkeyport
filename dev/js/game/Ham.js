@@ -1,7 +1,7 @@
 (function() {
 
-	var Ham = function(color,range) {
-	  this.initialize(color,range);
+	var Ham = function(range) {
+	  this.initialize(range);
 	}
 	var p = Ham.prototype = new createjs.Container();
  	
@@ -12,7 +12,7 @@
 	p.sprite;
 	//
 	p.Container_initialize = p.initialize;
-	p.initialize = function(color,range) {
+	p.initialize = function(range) {
 	    this.Container_initialize();
 	 	this.range = range;
 		//this.background = new createjs.Shape();
@@ -44,7 +44,7 @@
 		ss.getAnimation('dance').next = 'rest';
 		var sprite = new createjs.Sprite(ss,'rest');
 		this.sprite = sprite;
-		sprite.scaleX = sprite.scaleY = .8;
+		sprite.scaleX = sprite.scaleY = .5;
 		this.addChild(this.sprite);
 	}
 	p.handleTick = function(event) {
