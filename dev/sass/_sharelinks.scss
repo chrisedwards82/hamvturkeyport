@@ -1,0 +1,47 @@
+ul.share-links {
+	display: block;
+	margin: 0 auto;
+	li{
+		display: inline-block;
+		margin: 0;
+		margin-right: 5px;
+		.li-text {
+			display: none;
+		}
+			
+		a{	
+			background-color: #ea756e;
+			display: block;
+			width: 40px;
+			height: 40px;
+			text-indent: -9999em;
+			cursor: pointer;
+			background-image: url('../img/social-sprite.png');
+			background-repeat: no-repeat;
+			border-radius: 20px;
+		}
+		.a-email {
+		}
+		.a-facebook {
+			background-position: -99px -98px;
+		}
+		.a-twitter{
+			background-position: -238px -145px;
+		}
+		.a-google{
+			background-position: -238px -192px;
+		}
+		.a-tumblr{
+			background-position: -52px -100px;
+		}
+		.a-email{
+			background-position: -193px -4px;
+		}
+		
+		&.last{
+			margin-right: 0;
+		}
+	}
+	
+	
+}

@@ -63,9 +63,189 @@ textarea {
   padding: 0.2em 0;
 }
 
+/* line 17, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+/* line 10, ../sass/main.scss */
+body, html {
+  text-align: center;
+  background-image: url("../img/bg.jpg");
+}
+
+/* line 16, ../sass/main.scss */
+header {
+  width: 100%;
+  background-color: #7a0b23;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF7A0B23', endColorstr='#FF3F0002');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7a0b23), color-stop(100%, #3f0002));
+  background-image: -webkit-linear-gradient(top, #7a0b23 0%, #3f0002 100%);
+  background-image: -moz-linear-gradient(top, #7a0b23 0%, #3f0002 100%);
+  background-image: -o-linear-gradient(top, #7a0b23 0%, #3f0002 100%);
+  background-image: linear-gradient(top, #7a0b23 0%, #3f0002 100%);
+  border-bottom: 4px solid #fb7116;
+  padding: .5em 0;
+}
+/* line 25, ../sass/main.scss */
+header h1 {
+  margin: 0 auto;
+  display: block;
+  background-image: url("../img/header.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% auto;
+  line-height: 3.5em;
+  font-size: 2em;
+  text-indent: -9999em;
+  width: 300px;
+}
+
+/* line 38, ../sass/main.scss */
+#game {
+  width: 100%;
+  border-top: 3px solid #2d191a;
+  background-color: #2d191a;
+  border-bottom: 4px solid #fb7116;
+  padding: 0;
+}
+
+/* line 45, ../sass/main.scss */
+#gameCanvas {
+  margin: 0 auto;
+}
+
+/* line 48, ../sass/main.scss */
+footer {
+  font-family: 'Arial,Helvetica,sans-serif';
+  width: 100%;
+  background-color: #4c2904;
+  color: #ea756e;
+  border-bottom: 3px solid #2d191a;
+  padding: .5em 0;
+  height: 40px;
+}
+/* line 57, ../sass/main.scss */
+footer ul li {
+  display: inline-block;
+}
+
+/* line 1, ../sass/_sharelinks.scss */
+ul.share-links {
+  display: block;
+  margin: 0 auto;
+}
+/* line 4, ../sass/_sharelinks.scss */
+ul.share-links li {
+  display: inline-block;
+  margin: 0;
+  margin-right: 5px;
+}
+/* line 8, ../sass/_sharelinks.scss */
+ul.share-links li .li-text {
+  display: none;
+}
+/* line 12, ../sass/_sharelinks.scss */
+ul.share-links li a {
+  background-color: #ea756e;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-indent: -9999em;
+  cursor: pointer;
+  background-image: url("../img/social-sprite.png");
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+/* line 25, ../sass/_sharelinks.scss */
+ul.share-links li .a-facebook {
+  background-position: -99px -98px;
+}
+/* line 28, ../sass/_sharelinks.scss */
+ul.share-links li .a-twitter {
+  background-position: -238px -145px;
+}
+/* line 31, ../sass/_sharelinks.scss */
+ul.share-links li .a-google {
+  background-position: -238px -192px;
+}
+/* line 34, ../sass/_sharelinks.scss */
+ul.share-links li .a-tumblr {
+  background-position: -52px -100px;
+}
+/* line 37, ../sass/_sharelinks.scss */
+ul.share-links li .a-email {
+  background-position: -193px -4px;
+}
+/* line 41, ../sass/_sharelinks.scss */
+ul.share-links li.last {
+  margin-right: 0;
+}
+
 /* ==========================================================================
    End author's custom styles
    ========================================================================== */

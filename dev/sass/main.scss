@@ -1,12 +1,67 @@
 
 @import 'bp/bp';
+@import "compass/reset";
+@import "compass";
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
+body, html{
+	text-align: center;
+	background-image: url('../img/bg.jpg');
+	
+}
 
+header {
+	width: 100%;
+	// needs latest Compass, add '@import "compass"' to your scss
+	background-color: #7a0b23; // Old browsers
+	@include filter-gradient(#7a0b23, #3f0002, vertical); // IE6-9
+	@include background-image(linear-gradient(top,  #7a0b23 0%,#3f0002 100%));
+		
+	border-bottom: 4px solid #fb7116;
+	padding: .5em 0;
+	h1{
+		margin: 0 auto;
+		display: block;
+		background-image: url('../img/header.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 100% auto;
+		line-height: 3.5em;
+		font-size: 2em;
+		text-indent: -9999em;
+		width: 300px;
+	}
+}
+#game{
+	width: 100%;
+	border-top: 3px solid #2d191a;
+	background-color: #2d191a;
+	border-bottom: 4px solid #fb7116;
+	padding: 0;
+}
+#gameCanvas {
+	margin: 0 auto;
+}
+footer {
+	font-family: 'Arial,Helvetica,sans-serif';
+	width: 100%;
+	background-color: #4c2904;
+	color: #ea756e;
+	border-bottom: 3px solid #2d191a;
+	padding: .5em 0;
+	height: 40px;
+	ul{
+		li{
+			display: inline-block;
+			
+		}
+	}
+}
 
+@import '_sharelinks';
 
 /* ==========================================================================
    End author's custom styles

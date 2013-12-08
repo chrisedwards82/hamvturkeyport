@@ -23,10 +23,18 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-
-        <canvas id="gameCanvas" width="550" height="400">
-			alternate content
-		</canvas>
+		<header>
+			<h1>Ham vs. Turkey</h1>
+		</header>
+		<section id="game">
+        	<canvas id="gameCanvas" width="550" height="367">
+				You need a modern browser, such as Google Chrome, to experience this experience. 
+			</canvas>
+		</section>
+		<footer>
+			<ul class="social">
+			</ul>
+		</footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
