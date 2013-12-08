@@ -38,6 +38,8 @@ this.hamvturkey = this.hamvturkey || {};
 		this.goals = this.addChild(new hamvturkey.Digit(ss));
 		this.goals.x = 335; 
 		this.shots.y = this.saves.y = this.goals.y = 57;
+		this.scaleX = this.scaleY = .75;
+		this.x = 112;
 	}
 	hamvturkey.Scoreboard = Scoreboard;
 }());
