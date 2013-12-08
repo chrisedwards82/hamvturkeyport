@@ -147,6 +147,7 @@ this.hamvturkey = this.hamvturkey || {};
 			tick:function(event){
 				this.updateCursor();
 				this.stage.update();
+				this.ham.move();
 			},
 			updateCursor:function(){
 				var goalMouse = this.goal.globalToLocal(this.stage.mouseX,this.stage.mouseY);

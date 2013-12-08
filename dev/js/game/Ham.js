@@ -18,7 +18,7 @@ this.hamvturkey = this.hamvturkey || {};
 		//this.background = new createjs.Shape();
 		//this.background.graphics.beginFill(color).drawRect(0, 0, 60,80);
 		//this.addChild(this.background);
-		this.on("tick", this.handleTick);
+		//this.on("tick", this.handleTick);
 		this.mouseChildren = false;
 	}
 	p.buildSprite = function(img){
@@ -46,7 +46,7 @@ this.hamvturkey = this.hamvturkey || {};
 		this.sprite.scaleX = this.sprite.scaleY = .5;
 		this.addChild(this.sprite);
 	}
-	p.handleTick = function(event) {
+	p.move = function() {
 		var r = this.range*.5   
 		this.sprite.x = r+Math.cos(p.count++*this.speed)*r-25;
 		///	console.log(this.background.x);
