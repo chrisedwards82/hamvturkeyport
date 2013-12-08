@@ -100,7 +100,7 @@ this.hamvturkey = this.hamvturkey || {};
 					{src:imgPath+"sprite_bg.jpg",id:"bg"},
 					{src:imgPath+"sprite_turkey.png",id:"turkey"},
 					{src:imgPath+"sprite_ham.png",id:"ham"},
-					{src:imgPath+"sprite_digits.png",id:"digits"},
+					{src:imgPath+"sprite_digits_trans.png",id:"digits"},
 					{src:imgPath+"sprite_scoreboard.png",id:"scoreboard"},
 					{src:imgPath+"crosshairs.png",id:"crosshairs"},
 					{src:imgPath+"sprite_fruitcake.png",id:"puck"}
@@ -133,6 +133,8 @@ this.hamvturkey = this.hamvturkey || {};
 				this.ham.buildSprite(this.loader.getResult("ham"));
 				this.crosshairs = this.stage.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
 				this.crosshairs.regX = this.crosshairs.regY = 25;
+				this.scoreboard = this.stage.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits")));
+				this.scoreboard.x = 55;
 				this.startGame();
 			},
 			startGame:function(){
