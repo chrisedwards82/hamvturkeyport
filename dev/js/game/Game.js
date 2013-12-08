@@ -32,8 +32,8 @@ this.hamvturkey = this.hamvturkey || {};
 			},
 			onShot:function(event){
 				//console.log(event);
-				var stageX = event.stageX;
-				var stageY = event.stageY;
+				var stageX = this.crosshairs.x;
+				var stageY = this.crosshairs.y;
 				var p = this.stage.addChild(new hamvturkey.Puck(this.loader.getResult('puck').src));
 				p.x = 300;
 				p.y = 345;
