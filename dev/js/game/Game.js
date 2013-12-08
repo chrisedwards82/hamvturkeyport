@@ -13,6 +13,7 @@ this.hamvturkey = this.hamvturkey || {};
 			loader:null,
 			sound:null,
 			crosshairs:null,
+			scoreboard:null,
 			init:function(){
 				this.stage = new createjs.Stage("gameCanvas");
 				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
@@ -99,6 +100,8 @@ this.hamvturkey = this.hamvturkey || {};
 					{src:imgPath+"sprite_bg.jpg",id:"bg"},
 					{src:imgPath+"sprite_turkey.png",id:"turkey"},
 					{src:imgPath+"sprite_ham.png",id:"ham"},
+					{src:imgPath+"sprite_digits.png",id:"digits"},
+					{src:imgPath+"sprite_scoreboard.png",id:"scoreboard"},
 					{src:imgPath+"crosshairs.png",id:"crosshairs"},
 					{src:imgPath+"sprite_fruitcake.png",id:"puck"}
 				];
@@ -137,7 +140,6 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
 				this.goal.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
-				//this.ham.on('click',createjs.proxy(this.onShot,this));
 				this.stage.enableMouseOver(10);
 			},
 			tick:function(event){
