@@ -66,7 +66,8 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.impact();
 					puck.drop(270);
 					this.sound.announcer.save();
-					this.scoreboard.saves.update(this.shots);
+					this.saves++;
+					this.scoreboard.saves.update(this.saves);
 				}else {
 					this.stage.addChild(puck);
 					
@@ -93,7 +94,8 @@ this.hamvturkey = this.hamvturkey || {};
 							puck.x -=this.goal.x;
 							puck.y-=this.goal.y;
 							puck.drop(50);
-							this.scoreboard.goals.update(this.shots);
+							this.score++;
+							this.scoreboard.goals.update(this.score);
 							this.sound.announcer.scores();
 						break;
 					}
@@ -151,6 +153,9 @@ this.hamvturkey = this.hamvturkey || {};
 				this.goal.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
+				this.scoreboard.shots.update(this.shots);
+				this.scoreboard.goals.update(this.score);
+				this.scoreboard.saves.update(this.saves);
 			},
 			tick:function(event){
 				this.updateCursor();

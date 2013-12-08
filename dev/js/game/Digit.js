@@ -22,8 +22,12 @@ this.hamvturkey = this.hamvturkey || {};
 	}
 	p.update = function(val){
 		if(val<10){
-			val = "0"+val;
+			val = "0"+val;			
 		}
+		val = val.toString().split("");	
+		this.numL.gotoAndStop('n'+val[0]);
+		this.numR.gotoAndStop('n'+val[1]);
+
 	}
 	hamvturkey.Digit = Digit;
 }());
