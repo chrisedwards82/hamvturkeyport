@@ -1,3 +1,4 @@
+this.hamvturkey = this.hamvturkey || {};
 (function() {
  
 	var Turkey = function(color) {
@@ -53,5 +54,5 @@
 		});
 	}
  
-	window.Turkey = Turkey;
+	hamvturkey.Turkey = Turkey;
 }());

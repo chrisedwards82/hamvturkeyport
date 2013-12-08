@@ -177,9 +177,10 @@ header h1 {
 /* line 45, ../sass/main.scss */
 #gameCanvas {
   margin: 0 auto;
+  cursor: hidden;
 }
 
-/* line 48, ../sass/main.scss */
+/* line 49, ../sass/main.scss */
 footer {
   font-family: 'Arial,Helvetica,sans-serif';
   width: 100%;
@@ -189,7 +190,7 @@ footer {
   padding: .5em 0;
   height: 40px;
 }
-/* line 57, ../sass/main.scss */
+/* line 58, ../sass/main.scss */
 footer ul li {
   display: inline-block;
 }

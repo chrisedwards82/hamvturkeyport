@@ -1,3 +1,4 @@
+this.hamvturkey = this.hamvturkey || {};
 (function() {
 
 	var Goal = function(width,height,barWidth,alpha) {
@@ -29,5 +30,5 @@
 
 	
  
-	window.Goal = Goal;
+	hamvturkey.Goal = Goal;
 }());

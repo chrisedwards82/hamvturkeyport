@@ -15,29 +15,27 @@ this.hamvturkey = this.hamvturkey || {};
 
 			init:function(){
 				this.stage = new createjs.Stage("gameCanvas");
-				this.turkey = this.stage.addChild(new Turkey());
+				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
 				this.turkey.x = 250;
 				this.turkey.y = 100;
-				this.goal = new Goal(83,60,7,.01);
+				this.goal = new hamvturkey.Goal(83,60,7,.01);
 				this.goal.x = 248;
 				this.goal.y = 200;
 				this.stage.addChildAt(this.goal,0);
-				this.ham =  this.stage.addChild(new Ham(85));
+				this.ham =  this.stage.addChild(new hamvturkey.Ham(85));
 				this.ham.x = this.goal.x;
 				this.ham.y = this.goal.y;
 				//
 				this.loadAssets();
 			},
 			onShot:function(event){
-				console.log(event);
+				//console.log(event);
 				var stageX = event.stageX;
 				var stageY = event.stageY;
-				var p = this.stage.addChild(new Puck(this.loader.getResult('puck').src));
+				var p = this.stage.addChild(new hamvturkey.Puck(this.loader.getResult('puck').src));
 				p.x = 300;
 				p.y = 345;
-				
-				var proxy = createjs.proxy(this.onPuckContact,this);
-				p.on('hit',proxy);
+				p.on('hit',createjs.proxy(this.onPuckContact,this));
 				//to be called after shot animation
 				this.turkey.shoot(
 					function(){
@@ -115,7 +113,6 @@ this.hamvturkey = this.hamvturkey || {};
 						{id:hamvturkey.SoundManager.BOING_2, src:audioPath+'boing2.mp3|'+audioPath+'boing2.ogg'},
 						{id:hamvturkey.SoundManager.BOING_3, src:audioPath+'boing3.mp3|'+audioPath+'boing3.ogg'},
 						{id:hamvturkey.SoundManager.IMPACT, src:audioPath+'impact.mp3|'+audioPath+'impact.ogg'}
-
 					);
 					createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
 					this.loader.installPlugin(createjs.Sound);					
@@ -136,7 +133,6 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Ticker.addEventListener("tick", this.stage);
 				this.goal.on('click',createjs.proxy(this.onShot,this));
 				this.ham.on('click',createjs.proxy(this.onShot,this));
-				
 			}
 			
 	}

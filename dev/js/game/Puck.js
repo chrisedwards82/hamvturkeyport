@@ -1,3 +1,4 @@
+this.hamvturkey = this.hamvturkey || {};
 (function() {
 
 	var Puck = function(bmp) {
@@ -92,5 +93,5 @@
 			scaleX:scale, scaleY:scale
 		},300,Ease.quadOut).call(createjs.proxy(this.kill,this));
 	}
-	window.Puck = Puck;
+	hamvturkey.Puck = Puck;
 }());

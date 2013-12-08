@@ -1,5 +1,5 @@
+this.hamvturkey = this.hamvturkey || {};
 (function() {
-
 	var Ham = function(range) {
 	  this.initialize(range);
 	}
@@ -56,5 +56,5 @@
 	}
 	
  
-	window.Ham = Ham;
+	hamvturkey.Ham = Ham;
 }());
