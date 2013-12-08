@@ -21,6 +21,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.goal = new hamvturkey.Goal(83,60,7,.01);
 				this.goal.x = 248;
 				this.goal.y = 200;
+				this.goal.setBounds(this.goal.x,this.goal.y,63,60)
 				this.stage.addChildAt(this.goal,0);
 				this.ham =  this.stage.addChild(new hamvturkey.Ham(85));
 				this.ham.x = this.goal.x;
@@ -89,9 +90,6 @@ this.hamvturkey = this.hamvturkey || {};
 				}
 
 			},
-			updateCrosshairs:function(event){
-				
-			},
 			loadAssets:function(){
 				//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
 				//compress pngs: https://tinypng.com/
@@ -131,17 +129,30 @@ this.hamvturkey = this.hamvturkey || {};
 				this.turkey.buildSprite(this.loader.getResult("turkey"));
 				this.ham.buildSprite(this.loader.getResult("ham"));
 				this.crosshairs = this.stage.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
-				this.crosshairs.regX = this.crosshairs.regy = this.crosshairs.width*.5;
-				this.crosshairs.scaleX = this.crosshairs.scaleY = .2;
+				this.crosshairs.regX = this.crosshairs.regY = 25;
 				this.startGame();
 			},
 			startGame:function(){
 				createjs.Ticker.setFPS(60);
-				createjs.Ticker.addEventListener("tick", this.stage);
+				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
 				this.goal.on('click',createjs.proxy(this.onShot,this));
-				this.ham.on('click',createjs.proxy(this.onShot,this));
-				this.on("tick", this.updateCrosshairs);
-				this.stage.enableMouseOver(10)
+				this.ham.mousEnabled = false;
+				//this.ham.on('click',createjs.proxy(this.onShot,this));
+				this.stage.enableMouseOver(10);
+			},
+			tick:function(event){
+				this.updateCursor();
+				this.stage.update();
+			},
+			updateCursor:function(){
+				var goalMouse = this.goal.globalToLocal(this.stage.mouseX,this.stage.mouseY);
+				if(this.goal.hitTest(goalMouse.x,goalMouse.y)){
+					this.crosshairs.x = this.stage.mouseX;
+					this.crosshairs.y = this.stage.mouseY;
+					this.crosshairs.alpha = 1;
+				}else{
+					this.crosshairs.alpha = 0;
+				}
 			}
 			
 	}
