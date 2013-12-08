@@ -14,6 +14,9 @@ this.hamvturkey = this.hamvturkey || {};
 			sound:null,
 			crosshairs:null,
 			scoreboard:null,
+			score:0,
+			shots:10,
+			saves:0,
 			init:function(){
 				this.stage = new createjs.Stage("gameCanvas");
 				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
@@ -38,6 +41,10 @@ this.hamvturkey = this.hamvturkey || {};
 				p.x = 300;
 				p.y = 345;
 				p.on('hit',createjs.proxy(this.onPuckContact,this));
+				if(this.shots>0){
+					this.shots--;
+					this.scoreboard.shots.update(this.shots);
+				}
 				//to be called after shot animation
 				this.turkey.shoot(
 					function(){
@@ -59,6 +66,7 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.impact();
 					puck.drop(270);
 					this.sound.announcer.save();
+					this.scoreboard.saves.update(this.shots);
 				}else {
 					this.stage.addChild(puck);
 					
@@ -85,6 +93,7 @@ this.hamvturkey = this.hamvturkey || {};
 							puck.x -=this.goal.x;
 							puck.y-=this.goal.y;
 							puck.drop(50);
+							this.scoreboard.goals.update(this.shots);
 							this.sound.announcer.scores();
 						break;
 					}

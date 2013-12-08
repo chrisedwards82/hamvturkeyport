@@ -20,5 +20,10 @@ this.hamvturkey = this.hamvturkey || {};
 		this.blackL.graphics.beginFill('black').drawRect(27,43).endFill();
 		this.blackR.graphics.beginFill('black').drawRect(27,43).endFill();
 	}
+	p.update = function(val){
+		if(val<10){
+			val = "0"+val;
+		}
+	}
 	hamvturkey.Digit = Digit;
 }());
