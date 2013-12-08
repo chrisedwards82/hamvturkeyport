@@ -12,7 +12,7 @@ this.hamvturkey = this.hamvturkey || {};
 			ham:null,
 			loader:null,
 			sound:null,
-
+			crosshairs:null,
 			init:function(){
 				this.stage = new createjs.Stage("gameCanvas");
 				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
@@ -89,6 +89,9 @@ this.hamvturkey = this.hamvturkey || {};
 				}
 
 			},
+			updateCrosshairs:function(event){
+				
+			},
 			loadAssets:function(){
 				//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
 				//compress pngs: https://tinypng.com/
@@ -98,6 +101,7 @@ this.hamvturkey = this.hamvturkey || {};
 					{src:imgPath+"sprite_bg.jpg",id:"bg"},
 					{src:imgPath+"sprite_turkey.png",id:"turkey"},
 					{src:imgPath+"sprite_ham.png",id:"ham"},
+					{src:imgPath+"crosshairs.png",id:"crosshairs"},
 					{src:imgPath+"sprite_fruitcake.png",id:"puck"}
 				];
 				this.loader = new createjs.LoadQueue(false);
@@ -126,6 +130,9 @@ this.hamvturkey = this.hamvturkey || {};
 				this.bg = this.stage.addChildAt(new createjs.Bitmap(this.loader.getResult("bg")),0)
 				this.turkey.buildSprite(this.loader.getResult("turkey"));
 				this.ham.buildSprite(this.loader.getResult("ham"));
+				this.crosshairs = this.stage.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
+				this.crosshairs.regX = this.crosshairs.regy = this.crosshairs.width*.5;
+				this.crosshairs.scaleX = this.crosshairs.scaleY = .2;
 				this.startGame();
 			},
 			startGame:function(){
@@ -133,6 +140,8 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Ticker.addEventListener("tick", this.stage);
 				this.goal.on('click',createjs.proxy(this.onShot,this));
 				this.ham.on('click',createjs.proxy(this.onShot,this));
+				this.on("tick", this.updateCrosshairs);
+				this.stage.enableMouseOver(10)
 			}
 			
 	}

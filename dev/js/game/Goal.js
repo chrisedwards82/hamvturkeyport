@@ -24,7 +24,7 @@ this.hamvturkey = this.hamvturkey || {};
 		this.right_crossbar.graphics.beginFill("rgba(255,255,0,"+alpha+")").drawRect(0, 0, bar,height).endFill();
 		this.right_crossbar.x = width-bar;
 
-		//must enable mouseover
+		//must enable mouseover http://www.createjs.com/Docs/EaselJS/classes/Container.html#property_cursor
 		this.net.cursor = 'pointer';
 	}
 
