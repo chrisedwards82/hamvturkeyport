@@ -27,7 +27,13 @@ this.hamvturkey = this.hamvturkey || {};
 		val = val.toString().split("");	
 		this.numL.gotoAndStop('n'+val[0]);
 		this.numR.gotoAndStop('n'+val[1]);
-
+	}
+	p.transition = function(val) {
+		var digit = this;
+		p._transitionL = createjs.Tween.get(this.numL,{override:true}).to({alpha:0},100).call(function(){
+			digit.update(val);
+		}).wait(100).to({alpha:1},100);
+		p._transitionR = createjs.Tween.get(this.numR,{override:true}).to({alpha:0},100).wait(100).to({alpha:1},100);
 	}
 	hamvturkey.Digit = Digit;
 }());

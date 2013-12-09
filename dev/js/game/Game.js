@@ -17,7 +17,7 @@ this.hamvturkey = this.hamvturkey || {};
 			score:0,
 			shots:10,
 			saves:0,
-			init:function(){
+			init:function(){	
 				this.stage = new createjs.Stage("gameCanvas");
 				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
 				this.turkey.x = 250;
@@ -43,7 +43,7 @@ this.hamvturkey = this.hamvturkey || {};
 				p.on('hit',createjs.proxy(this.onPuckContact,this));
 				if(this.shots>0){
 					this.shots--;
-					this.scoreboard.shots.update(this.shots);
+					this.scoreboard.shots.transition(this.shots);
 				}
 				//to be called after shot animation
 				this.turkey.shoot(
@@ -67,7 +67,7 @@ this.hamvturkey = this.hamvturkey || {};
 					puck.drop(270);
 					this.sound.announcer.save();
 					this.saves++;
-					this.scoreboard.saves.update(this.saves);
+					this.scoreboard.saves.transition(this.saves);
 				}else {
 					this.stage.addChild(puck);
 					
@@ -95,7 +95,7 @@ this.hamvturkey = this.hamvturkey || {};
 							puck.y-=this.goal.y;
 							puck.drop(50);
 							this.score++;
-							this.scoreboard.goals.update(this.score);
+							this.scoreboard.goals.transition(this.score);
 							this.sound.announcer.scores();
 						break;
 					}
@@ -153,9 +153,9 @@ this.hamvturkey = this.hamvturkey || {};
 				this.goal.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
-				this.scoreboard.shots.update(this.shots);
-				this.scoreboard.goals.update(this.score);
-				this.scoreboard.saves.update(this.saves);
+				this.scoreboard.shots.transition(this.shots);
+				this.scoreboard.goals.transition(this.score);
+				this.scoreboard.saves.transition(this.saves);
 			},
 			tick:function(event){
 				this.updateCursor();
