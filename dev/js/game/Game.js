@@ -143,7 +143,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.turkey.buildSprite(this.loader.getResult("turkey"));
 				this.ham.buildSprite(this.loader.getResult("ham"));
 				this.crosshairs = this.stage.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
-				this.crosshairs.regX = this.crosshairs.regY = 25;
+				this.crosshairs.regX = this.crosshairs.regY = 12.5;
 				this.scoreboard = this.stage.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits")));
 				this.startGame();
 			},
