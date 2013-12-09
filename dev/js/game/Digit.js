@@ -28,12 +28,13 @@ this.hamvturkey = this.hamvturkey || {};
 		this.numL.gotoAndStop('n'+val[0]);
 		this.numR.gotoAndStop('n'+val[1]);
 	}
-	p.transition = function(val) {
+	p.transition = function(val,speed) {
 		var digit = this;
-		p._transitionL = createjs.Tween.get(this.numL,{override:true}).to({alpha:0},100).call(function(){
+		if(!speed) speed = 50;
+		p._transitionL = createjs.Tween.get(this.numL,{override:true}).to({alpha:0},speed).call(function(){
 			digit.update(val);
-		}).wait(100).to({alpha:1},100);
-		p._transitionR = createjs.Tween.get(this.numR,{override:true}).to({alpha:0},100).wait(100).to({alpha:1},100);
+		}).wait(speed).to({alpha:1},speed);
+		p._transitionR = createjs.Tween.get(this.numR,{override:true}).to({alpha:0},speed).wait(speed).to({alpha:1},speed);
 	}
 	hamvturkey.Digit = Digit;
 }());
