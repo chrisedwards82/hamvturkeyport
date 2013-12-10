@@ -6,6 +6,11 @@ $(document).ready(function(){
 	if(isTouchDevice){
 		//launch game on touch prompt
 		$('#game').addClass('touch-to-play');
+		$('#game').append('<a class="touch-spot></a>"');
+		$('.touch-spot').click(function(event){
+			$(this).parent().removeChild($this);
+		 	game = new hamvturkey.Game();
+		})
 	} else {
 		game = new hamvturkey.Game();
 	}
