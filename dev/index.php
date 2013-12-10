@@ -39,10 +39,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-		<?php include 'includes/_easeljs.php' ?>
-		<?php include 'includes/_tweenjs.php' ?>
-		<?php include 'includes/_preloadjs.php' ?>
-		<?php include 'includes/_soundjs.php' ?>
+		<script src="//code.createjs.com/createjs-2013.09.25.min.js"></script>
 		<?php include 'includes/_gamejs.php' ?>
 	
         <script src="js/main.js"></script>
