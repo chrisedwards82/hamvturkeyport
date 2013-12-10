@@ -20,10 +20,10 @@ this.hamvturkey = this.hamvturkey || {};
 			init:function(){	
 				this.stage = new createjs.Stage("gameCanvas");
 				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
-				this.turkey.x = 250;
-				this.turkey.y = 100;
+				this.turkey.y = 120;
+				this.turkey.x = 290;
+				this.turkey.scaleX = this.turkey.scaleY = .9;
 				this.goal = new hamvturkey.Goal(83,60,250,200,7,.01);
-				
 				this.stage.addChildAt(this.goal,0);
 				this.ham =  this.stage.addChild(new hamvturkey.Ham(85));
 				this.ham.x = this.goal.x;
