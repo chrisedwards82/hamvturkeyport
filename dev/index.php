@@ -26,6 +26,7 @@
 		<header>
 			<h1>Ham vs. Turkey</h1>
 		</header>
+		
 		<section id="game">
         	<canvas id="gameCanvas" width="550" height="367">
 				You need a modern browser, such as <a href="https://www.google.com/intl/en/chrome/" target="_blank">Google Chrome</a>, to experience this experience. 

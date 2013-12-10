@@ -41,6 +41,13 @@ header {
 	background-color: #2d191a;
 	border-bottom: 4px solid #fb7116;
 	padding: 0;
+	
+	&.touch-to-play{
+		background-image: url('../img/touch2play.jpg');
+		background-position: center center;
+		background-repeat: no-repeat;
+		cursor: pointer;
+	}
 }
 #gameCanvas {
 	margin: 0 auto;

@@ -2,8 +2,10 @@
 var game, isTouchDevice = false;
 $(document).ready(function(){
 	//alert("let's do it");
+	//isTouchDevice = true;
 	if(isTouchDevice){
 		//launch game on touch prompt
+		$('#game').addClass('touch-to-play');
 	} else {
 		game = new hamvturkey.Game();
 	}

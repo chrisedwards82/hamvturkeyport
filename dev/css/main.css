@@ -172,24 +172,31 @@ header h1 {
   background-color: #2d191a;
   border-bottom: 4px solid #fb7116;
   padding: 0;
+  background-image: url("../img/touch2play.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+/* line 47, ../sass/main.scss */
+#game.touch-to-play {
+  cursor: pointer;
 }
 
-/* line 45, ../sass/main.scss */
+/* line 51, ../sass/main.scss */
 #gameCanvas {
   margin: 0 auto;
   cursor: hidden;
 }
 
-/* line 49, ../sass/main.scss */
+/* line 55, ../sass/main.scss */
 footer {
   font-family: 'Arial,Helvetica,sans-serif';
   width: 100%;
   background-color: #4c2904;
   color: #ea756e;
   border-bottom: 3px solid #2d191a;
-  padding: .5em 0;
+  padding: .6em 0;
 }
-/* line 57, ../sass/main.scss */
+/* line 63, ../sass/main.scss */
 footer ul li {
   display: inline-block;
 }
