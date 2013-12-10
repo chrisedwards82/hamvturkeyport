@@ -1,5 +1,5 @@
 
-var game, isTouchDevice = false
+var game, isTouchDevice = false;
 $(document).ready(function(){
 	//alert("let's do it");
 	if(isTouchDevice){
