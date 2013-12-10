@@ -45,12 +45,10 @@ header {
 	&.touch-to-play{
 		
 		.touch-spot{
-			position: absolute;
-			top: 0;
-			left: 0;
+			display: block;
+			margin: 0 auto;
 			width:550px; 
 			height:367px;
-			background-color: #f00;
 			cursor: pointer;
 			background-image: url('../img/touch2play.jpg');
 			background-position: center center;

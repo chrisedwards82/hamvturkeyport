@@ -6,9 +6,12 @@ $(document).ready(function(){
 	if(isTouchDevice){
 		//launch game on touch prompt
 		$('#game').addClass('touch-to-play');
-		$('#game').append('<a class="touch-spot></a>"');
+		$('#game').append('<a class="touch-spot"></a>');
+		$('#gameCanvas').hide();
+		
 		$('.touch-spot').click(function(event){
-			$(this).parent().removeChild($this);
+			$(this).hide()
+			$('#gameCanvas').show();
 		 	game = new hamvturkey.Game();
 		})
 	} else {
