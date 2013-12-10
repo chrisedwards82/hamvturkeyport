@@ -10,31 +10,22 @@ this.hamvturkey = this.hamvturkey || {};
 	p.Container_initialize = p.initialize;
 	p.initialize = function(ss) {
 	    this.Container_initialize();
-		this.blackL = this.addChild(new createjs.Shape());
-		this.blackR = this.addChild(new createjs.Shape());
-		this.bgL = this.addChild(new createjs.Sprite(ss,'bg'));
-		this.bgR = this.addChild(new createjs.Sprite(ss,'bg'));
-		this.numL = this.addChild(new createjs.Sprite(ss,'n0'));
-		this.numR = this.addChild(new createjs.Sprite(ss,'n0'));
-		this.blackR.x = this.bgR.x =this.numR.x = 28;
-		this.blackL.graphics.beginFill('black').drawRect(27,43).endFill();
-		this.blackR.graphics.beginFill('black').drawRect(27,43).endFill();
+		this.black = this.addChild(new createjs.Shape());
+		this.bg = this.addChild(new createjs.Sprite(ss,'bg'));
+		this.num = this.addChild(new createjs.Sprite(ss,'n0'));
+		this.black.graphics.beginFill('black').drawRect(27,43).endFill();
 	}
-	p.update = function(val){
-		if(val<10){
-			val = "0"+val;			
-		}
-		val = val.toString().split("");	
-		this.numL.gotoAndStop('n'+val[0]);
-		this.numR.gotoAndStop('n'+val[1]);
+	p.update = function(frame){
+		this.num.gotoAndStop(frame);
 	}
-	p.transition = function(val,speed) {
+	p.transition = function(frame,speed,delay) {
 		var digit = this;
 		if(!speed) speed = 50;
-		p._transitionL = createjs.Tween.get(this.numL,{override:true}).to({alpha:0},speed).call(function(){
+		if(!delay) delay = 0;
+		p._transitionL = createjs.Tween.get(this.num,{override:true}).to({alpha:0},speed).call(function(){
 			digit.update(val);
-		}).wait(speed).to({alpha:1.5},speed);
-		p._transitionR = createjs.Tween.get(this.numR,{override:true}).to({alpha:0},speed).wait(speed).to({alpha:1.5},speed);
+		}).wait(delay).to({alpha:1},speed);
+	
 	}
 	hamvturkey.Digit = Digit;
 }());
