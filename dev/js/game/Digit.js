@@ -33,8 +33,8 @@ this.hamvturkey = this.hamvturkey || {};
 		if(!speed) speed = 50;
 		p._transitionL = createjs.Tween.get(this.numL,{override:true}).to({alpha:0},speed).call(function(){
 			digit.update(val);
-		}).wait(speed).to({alpha:1},speed);
-		p._transitionR = createjs.Tween.get(this.numR,{override:true}).to({alpha:0},speed).wait(speed).to({alpha:1},speed);
+		}).wait(speed).to({alpha:1.5},speed);
+		p._transitionR = createjs.Tween.get(this.numR,{override:true}).to({alpha:0},speed).wait(speed).to({alpha:1.5},speed);
 	}
 	hamvturkey.Digit = Digit;
 }());

@@ -22,10 +22,8 @@ this.hamvturkey = this.hamvturkey || {};
 				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
 				this.turkey.x = 250;
 				this.turkey.y = 100;
-				this.goal = new hamvturkey.Goal(83,60,7,.01);
-				this.goal.x = 248;
-				this.goal.y = 200;
-				this.goal.setBounds(this.goal.x,this.goal.y,63,60)
+				this.goal = new hamvturkey.Goal(83,60,250,200,7,.01);
+				
 				this.stage.addChildAt(this.goal,0);
 				this.ham =  this.stage.addChild(new hamvturkey.Ham(85));
 				this.ham.x = this.goal.x;
@@ -48,7 +46,7 @@ this.hamvturkey = this.hamvturkey || {};
 				//to be called after shot animation
 				this.turkey.shoot(
 					function(){
-						p.fire(event.stageX,event.stageY);
+						p.fire(stageX,stageY);
 					}
 				);
 				//console.log(this.loader.getResult("sfx_shoot"));
@@ -150,7 +148,7 @@ this.hamvturkey = this.hamvturkey || {};
 			startGame:function(){
 				createjs.Ticker.setFPS(60);
 				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
-				this.goal.on('click',createjs.proxy(this.onShot,this));
+				this.stage.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
 				this.scoreboard.shots.transition(this.shots);
@@ -163,14 +161,25 @@ this.hamvturkey = this.hamvturkey || {};
 				this.ham.move();
 			},
 			updateCursor:function(){
-				var goalMouse = this.goal.globalToLocal(this.stage.mouseX,this.stage.mouseY);
-				if(this.goal.hitTest(goalMouse.x,goalMouse.y)){
-					this.crosshairs.x = this.stage.mouseX;
-					this.crosshairs.y = this.stage.mouseY;
-					this.crosshairs.alpha = 1;
+				var goal = this.goal.getBounds();
+				var mouseX = this.stage.mouseX;
+				var mouseY = this.stage.mouseY;
+				goal.width-=6;
+				if(mouseX<goal.x){
+					this.crosshairs.x = goal.x;
+				}else if(mouseX>goal.x+goal.width){
+					this.crosshairs.x = goal.x+goal.width;
 				}else{
-					this.crosshairs.alpha = 0;
+					this.crosshairs.x = mouseX;
 				}
+				if(mouseY<goal.y){
+					this.crosshairs.y = goal.y;
+				}else if(mouseY>goal.y+goal.height){
+					this.crosshairs.y = goal.y+goal.height;
+				}else{
+					this.crosshairs.y = mouseY;
+				}
+				this.crosshairs.rotation++;
 			}
 			
 	}

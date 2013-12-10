@@ -1,14 +1,14 @@
 this.hamvturkey = this.hamvturkey || {};
 (function() {
 
-	var Goal = function(width,height,barWidth,alpha) {
-	  this.initialize(width,height,barWidth,alpha);
+	var Goal = function(width,height,x,y,barWidth,alpha) {
+	  this.initialize(width,height,x,y,barWidth,alpha);
 	}
 	var p = Goal.prototype = new createjs.Container();
  	
 	//
 	p.Container_initialize = p.initialize;
-	p.initialize = function(width,height,barWidth,alpha) {
+	p.initialize = function(width,height,x,y,barWidth,alpha) {
 	    this.Container_initialize();
 		var bar = 5;
 		if(barWidth) bar = barWidth;
@@ -18,12 +18,13 @@ this.hamvturkey = this.hamvturkey || {};
 		this.top_crossbar = this.addChild(new createjs.Shape());	
 		this.left_crossbar = this.addChild(new createjs.Shape());		
 		this.right_crossbar = this.addChild(new createjs.Shape());	
-		
 		this.top_crossbar.graphics.beginFill("rgba(255,0,255,"+alpha+")").drawRect(0, 0, width,bar).endFill();
 		this.left_crossbar.graphics.beginFill("rgba(255,125,0,"+alpha+")").drawRect(0, 0, bar,height).endFill();
 		this.right_crossbar.graphics.beginFill("rgba(255,255,0,"+alpha+")").drawRect(0, 0, bar,height).endFill();
 		this.right_crossbar.x = width-bar;
-
+		this.x = x;
+		this.y = y;
+		this.setBounds(this.x,this.y,width,height);
 		//must enable mouseover http://www.createjs.com/Docs/EaselJS/classes/Container.html#property_cursor
 		this.cursor = 'none';
 	}

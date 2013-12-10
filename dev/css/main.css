@@ -188,9 +188,8 @@ footer {
   color: #ea756e;
   border-bottom: 3px solid #2d191a;
   padding: .5em 0;
-  height: 40px;
 }
-/* line 58, ../sass/main.scss */
+/* line 57, ../sass/main.scss */
 footer ul li {
   display: inline-block;
 }
