@@ -14,6 +14,7 @@ this.hamvturkey = this.hamvturkey || {};
 			sound:null,
 			crosshairs:null,
 			scoreboard:null,
+			container:null,
 			score:0,
 			shots:10,
 			saves:0,
@@ -27,7 +28,7 @@ this.hamvturkey = this.hamvturkey || {};
 				//console.log(event);
 				var stageX = this.crosshairs.x;
 				var stageY = this.crosshairs.y;
-				var p = this.stage.addChild(new hamvturkey.Puck(this.loader.getResult('puck').src));
+				var p = this.container.addChild(new hamvturkey.Puck(this.loader.getResult('puck').src));
 				p.x = 300;
 				p.y = 345;
 				p.on('hit',createjs.proxy(this.onPuckContact,this));
@@ -58,9 +59,7 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.announcer.save();
 					this.saves++;
 					this.scoreboard.saves.transition(this.saves);
-				}else {
-					this.stage.addChild(puck);
-					
+				}else {					
 					switch(arr[0]){
 						case this.goal.right_crossbar:
 							//alert('wide right');
@@ -123,7 +122,8 @@ this.hamvturkey = this.hamvturkey || {};
 					{src:this.imgPath+"sprite_digits_trans.png",id:"digits"},
 					{src:this.imgPath+"sprite_scoreboard.png",id:"scoreboard"},
 					{src:this.imgPath+"crosshairs.png",id:"crosshairs"},
-					{src:this.imgPath+"sprite_fruitcake.png",id:"puck"}
+					{src:this.imgPath+"sprite_fruitcake.png",id:"puck"},
+					{src:this.imgPath+"sprite_gameon_bg.jpg",id:"gameon"}
 				];
 				this.loader = new createjs.LoadQueue(false);
 				this.sound = new hamvturkey.SoundManager(this.loader);
@@ -151,21 +151,35 @@ this.hamvturkey = this.hamvturkey || {};
 			onAssetsLoaded:function(event){
 				console.log(event);			
 				//TODO wrap this all in a "click/touch to play" event
-				this.bg = this.stage.addChild(new createjs.Bitmap(this.loader.getResult("bg")));
-				this.turkey = this.stage.addChild(new hamvturkey.Turkey());
+				this.container = this.stage.addChildAt(new createjs.Container(),0);
+				this.container.setBounds(550,367);
+				this.bg = this.container.addChild(new createjs.Bitmap(this.loader.getResult("bg")));
+				this.turkey = this.container.addChild(new hamvturkey.Turkey());
 				this.turkey.y = 120;
 				this.turkey.x = 290;
 				this.turkey.scaleX = this.turkey.scaleY = .9;
 				this.turkey.buildSprite(this.loader.getResult("turkey"));
-				this.goal = this.stage.addChild(new hamvturkey.Goal(83,60,250,200,7,.01));
-				this.ham =  this.stage.addChild(new hamvturkey.Ham(85));
+				this.goal = this.container.addChild(new hamvturkey.Goal(83,60,250,200,7,.01));
+				this.ham =  this.container.addChild(new hamvturkey.Ham(85));
 				this.ham.x = this.goal.x;
 				this.ham.y = this.goal.y;
 				this.ham.buildSprite(this.loader.getResult("ham"));
-				this.crosshairs = this.stage.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
+				this.crosshairs = this.container.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
 				this.crosshairs.regX = this.crosshairs.regY = 12.5;
-				this.scoreboard = this.stage.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits")));
-				this.startGame();
+				this.scoreboard = this.container.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits")));
+				this.circleWipe()
+			
+			},
+			circleWipe:function(){
+				this.stage.removeChild(this.preloader); 
+				this.gameon = this.stage.addChildAt(new createjs.Bitmap(this.loader.getResult('gameon')),0);
+				this.circlemask = new createjs.Shape();
+				this.circlemask.graphics.beginFill('red').drawCircle(0,0,1500);
+				this.circlemask.x = 225;
+				this.circlemask.y = 184;
+				this.container.mask = this.circlemask;
+				this.circlemask.scaleX = this.circlemask.scaleY = 0;
+				createjs.Tween.get(this.circlemask).wait(1000).to({scaleX:1,scaleY:1},500).call(createjs.proxy(this.startGame,this));
 			},
 			initStage:function(){
 				this.stage = new createjs.Stage("gameCanvas");
