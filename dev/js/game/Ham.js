@@ -53,11 +53,12 @@ this.hamvturkey = this.hamvturkey || {};
 		this.sprite.scaleX = this.sprite.scaleY = .5;
 		this.addChild(this.sprite);
 		this.sprite.on('animationend',createjs.proxy(this.danceComplete,this));
+		
 	}
 	p.move = function() {
 		if(!this.doMove) return;
 		var r = this.range*.5   
-		this.sprite.x = r+Math.cos(p.count++*this.speed)*r-25;
+		this.sprite.x = r+Math.sin(p.count++*this.speed)*r-25;
 		///	console.log(this.background.x);
 	}
 	p.startMoving = function(){

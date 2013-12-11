@@ -5,6 +5,7 @@ this.hamvturkey = this.hamvturkey || {};
 		this.init();
 	}
 	Game.prototype = {
+			//
 			stage:null,
 			bg:null,
 			turkey:null,
@@ -18,6 +19,7 @@ this.hamvturkey = this.hamvturkey || {};
 			score:0,
 			shots:10,
 			saves:0,
+			skipSong:false,
 			imgPath:'assets/img/',
 			audioPath:'assets/sound/',
 			init:function(){	
@@ -114,7 +116,6 @@ this.hamvturkey = this.hamvturkey || {};
 				//view-source:http://localhost/EaselJs/examples/SpriteSheet.html
 				//compress pngs: https://tinypng.com/
 				//modify sounds: audacity
-				
 				manifest = [
 					{src:this.imgPath+"sprite_bg.jpg",id:"bg"},
 					{src:this.imgPath+"sprite_turkey.png",id:"turkey"},
@@ -169,7 +170,6 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Tween.get(this).wait(500).call(createjs.proxy(this.circleWipe,this));
 			},
 			circleWipe:function(){
-				
 				var bounds = this.container.getBounds();
 				this.stage.removeChild(this.preloader); 
 				this.gameon = this.stage.addChildAt(new createjs.Bitmap(this.loader.getResult('gameon')),0);
@@ -181,41 +181,49 @@ this.hamvturkey = this.hamvturkey || {};
 				this.container.cache(bounds.x,bounds.y,bounds.width,bounds.height);
 				this.container.mask = this.circlemask;
 				this.circlemask.scaleX = this.circlemask.scaleY = 0;
-				createjs.Tween.get(this.circlemask).wait(1000).to({scaleX:1,scaleY:1},900).call(createjs.proxy(this.startSong,this));
+				createjs.Tween.get(this.circlemask).wait(1000).to({scaleX:1,scaleY:1},900).call(createjs.proxy(this.playSong,this));
 			},
-			startSong:function(){
+			playSong:function(){
 				this.container.uncache();
 				this.container.mask = null;
 				this.stage.removeChild(this.gameon);
-				this.scoreboard.shots.transition(this.shots);
-				this.scoreboard.goals.transition(this.score);
-				this.scoreboard.saves.transition(this.saves);
-				this.turkey.startMoving();
-				this.ham.dance();
-				this.turkey.startMoving();
-				this.ham.startMoving();
-				var game = this, tHam, tTurkey;
-				var turkey_delay = 4500, count=0;
-				var lis = game.ham.on(hamvturkey.Ham.DANCE_COMPLETE,function(){
-					count++;
-					if(count<4){
-						game.turkey.crouch();
-						tTurkey = createjs.Tween.get(game.turkey).wait(1500).call(createjs.proxy(game.turkey.startMoving, game.turkey));
-						tHam = createjs.Tween.get(game.ham).wait(1500).call(createjs.proxy(game.ham.dance, game.ham));
-					}else {
-						game.ham.off(lis);
+				if(this.sound.soundEnabled || this.skipSong){
+					this.scoreboard.shots.transition(this.shots);
+					this.scoreboard.goals.transition(this.score);
+					this.scoreboard.saves.transition(this.saves);
+					this.turkey.startMoving();
+					this.ham.dance();
+					var game = this, tHam, tTurkey;
+					var turkey_delay = 4500, count = 0;
+					console.log(count);
+					var lis = game.ham.on(hamvturkey.Ham.DANCE_COMPLETE,function(){
+						count++;
+						if(count==2){
+							//
+						}
+						if(count<=4){
+							game.turkey.crouch();
+							createjs.Tween.get(game.turkey).wait(1500).call(createjs.proxy(game.turkey.startMoving, game.turkey));
+							createjs.Tween.get(game.ham).wait(1500).call(createjs.proxy(game.ham.dance, game.ham));
+						}else if(count == 5){
+							game.ham.dance();
+						}else {
+							game.ham.off(lis);
+							game.turkey.crouch();
+						}
+					});
+					var song = this.sound.playSong(hamvturkey.SoundManager.THEME);
+					song.addEventListener('complete',function(){
 						game.startGame();
-						game.turkey.crouch();
-					}
-				});
-				var song = this.sound.playSong(hamvturkey.SoundManager.THEME);
-				song.addEventListener('complete',function(){
-					game.turkey.startMoving();
-				});
+					});
+				}else {
+						
+				}
 				//createjs.Tween.wait(100).call(createjs.proxy(turkey.crouch, turkey))
 			},
 			startGame:function(){
 				this.ham.startMoving();
+				this.turkey.startMoving();
 				this.stage.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
@@ -228,11 +236,9 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
 			},
 			tick:function(event){
-
 				if(this.crosshairs) this.updateCursor();
 				if(this.ham) this.ham.move();
 				this.stage.update();
-				
 			},
 			updateCursor:function(){
 				var goal = this.goal.getBounds();
