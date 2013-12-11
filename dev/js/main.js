@@ -6,9 +6,8 @@ $(document).ready(function(){
 	if(isTouchDevice){
 		//launch game on touch prompt
 		$('#game').addClass('touch-to-play');
-		$('#game').append('<a class="touch-spot"></a>');
+		$('#game').append('<a class="touch-spot clearfix"></a>');
 		$('#gameCanvas').hide();
-		
 		$('.touch-spot').click(function(event){
 			$(this).hide()
 			$('#gameCanvas').show();
