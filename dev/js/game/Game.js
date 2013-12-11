@@ -187,10 +187,9 @@ this.hamvturkey = this.hamvturkey || {};
 				this.container.uncache();
 				this.container.mask = null;
 				this.stage.removeChild(this.gameon);
-				if(this.sound.soundEnabled || this.skipSong){
-					this.scoreboard.shots.transition(this.shots);
-					this.scoreboard.goals.transition(this.score);
-					this.scoreboard.saves.transition(this.saves);
+				this.skipSong = true;
+				if(this.sound.soundEnabled && !this.skipSong){
+					
 					this.turkey.startMoving();
 					this.ham.dance();
 					var game = this, tHam, tTurkey;
@@ -217,13 +216,15 @@ this.hamvturkey = this.hamvturkey || {};
 						game.startGame();
 					});
 				}else {
-						
+					this.startGame();
 				}
-				//createjs.Tween.wait(100).call(createjs.proxy(turkey.crouch, turkey))
 			},
 			startGame:function(){
 				this.ham.startMoving();
 				this.turkey.startMoving();
+				this.scoreboard.shots.transition(this.shots);
+				this.scoreboard.goals.transition(this.score);
+				this.scoreboard.saves.transition(this.saves);
 				this.stage.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
