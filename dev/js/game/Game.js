@@ -152,7 +152,7 @@ this.hamvturkey = this.hamvturkey || {};
 				console.log(event);			
 				//TODO wrap this all in a "click/touch to play" event
 				this.container = this.stage.addChildAt(new createjs.Container(),0);
-				this.container.setBounds(550,367);
+				this.container.setBounds(0,0,550,367);
 				this.bg = this.container.addChild(new createjs.Bitmap(this.loader.getResult("bg")));
 				this.turkey = this.container.addChild(new hamvturkey.Turkey());
 				this.turkey.y = 120;
@@ -164,22 +164,25 @@ this.hamvturkey = this.hamvturkey || {};
 				this.ham.x = this.goal.x;
 				this.ham.y = this.goal.y;
 				this.ham.buildSprite(this.loader.getResult("ham"));
-				this.crosshairs = this.container.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
-				this.crosshairs.regX = this.crosshairs.regY = 12.5;
 				this.scoreboard = this.container.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits")));
 				this.circleWipe()
 			
 			},
 			circleWipe:function(){
+				
+				var bounds = this.container.getBounds();
+				console.log(bounds);
 				this.stage.removeChild(this.preloader); 
 				this.gameon = this.stage.addChildAt(new createjs.Bitmap(this.loader.getResult('gameon')),0);
 				this.circlemask = new createjs.Shape();
-				this.circlemask.graphics.beginFill('red').drawCircle(0,0,1500);
-				this.circlemask.x = 225;
-				this.circlemask.y = 184;
+				this.circlemask.graphics.beginFill('red').drawCircle(0,0,bounds.width);
+				this.circlemask.x = bounds.width*.5;
+				this.circlemask.y = bounds.height*.5;
+				this.circlemask.cache(bounds.x,bounds.y,bounds.width,bounds.height);
+				this.container.cache(bounds.x,bounds.y,bounds.width,bounds.height);
 				this.container.mask = this.circlemask;
 				this.circlemask.scaleX = this.circlemask.scaleY = 0;
-				createjs.Tween.get(this.circlemask).wait(1000).to({scaleX:1,scaleY:1},500).call(createjs.proxy(this.startGame,this));
+				createjs.Tween.get(this.circlemask).wait(1000).to({scaleX:1,scaleY:1},900).call(createjs.proxy(this.startGame,this));
 			},
 			initStage:function(){
 				this.stage = new createjs.Stage("gameCanvas");
@@ -187,17 +190,26 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
 			},
 			startGame:function(){
+				this.container.uncache();
+				this.container.mask = null;
+				this.stage.removeChild(this.gameon);
+				this.ham.startMoving();
+				this.turkey.startMoving();
 				this.stage.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
 				this.scoreboard.shots.transition(this.shots);
 				this.scoreboard.goals.transition(this.score);
 				this.scoreboard.saves.transition(this.saves);
+				this.crosshairs = this.container.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
+				this.crosshairs.regX = this.crosshairs.regY = 12.5;
 			},
 			tick:function(event){
+
 				if(this.crosshairs) this.updateCursor();
-				this.stage.update();
 				if(this.ham) this.ham.move();
+				this.stage.update();
+				
 			},
 			updateCursor:function(){
 				var goal = this.goal.getBounds();

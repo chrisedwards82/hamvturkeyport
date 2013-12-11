@@ -38,11 +38,16 @@ this.hamvturkey = this.hamvturkey || {};
 		ss.getAnimation('rest').next = 'rest';
 		ss.getAnimation('windup').next = 'shoot';
 		ss.getAnimation('shoot').next = 'rest';
-		var sprite = new createjs.Sprite(ss,'rest');
+		var sprite = new createjs.Sprite(ss);
 		this.sprite = sprite;
 		this.addChild(sprite);
 	}
-
+	p.stopMoving = function(){
+		this.sprite.gotoAndStop(1);
+	}
+	p.startMoving = function(){
+		this.sprite.gotoAndPlay('rest');
+	}
 	p.shoot = function(callback){
 		var sprite = this.sprite;
 		sprite.gotoAndPlay('windup');

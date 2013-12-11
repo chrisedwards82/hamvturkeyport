@@ -15,6 +15,7 @@ this.hamvturkey = this.hamvturkey || {};
 	p.initialize = function(range) {
 	    this.Container_initialize();
 	 	this.range = range;
+		this.doMove = false;
 		//this.background = new createjs.Shape();
 		//this.background.graphics.beginFill(color).drawRect(0, 0, 60,80);
 		//this.addChild(this.background);
@@ -47,9 +48,16 @@ this.hamvturkey = this.hamvturkey || {};
 		this.addChild(this.sprite);
 	}
 	p.move = function() {
+		if(!this.doMove) return;
 		var r = this.range*.5   
 		this.sprite.x = r+Math.cos(p.count++*this.speed)*r-25;
 		///	console.log(this.background.x);
+	}
+	p.startMoving = function(){
+		this.doMove = true;
+	}
+	p.stopMoving = function(){
+		this.doMove = false;
 	}
 	p.save = function(){
 		this.sprite.gotoAndPlay('save');
