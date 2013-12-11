@@ -12,7 +12,7 @@ this.hamvturkey = this.hamvturkey || {};
 	    this.Container_initialize();
 		this.black = this.addChild(new createjs.Shape());
 		this.bg = this.addChild(new createjs.Sprite(ss,'bg'));
-		this.num = this.addChild(new createjs.Sprite(ss,'n0'));
+		this.num = this.addChild(new createjs.Sprite(ss,'bg'));
 		this.black.graphics.beginFill('black').drawRect(27,43).endFill();
 	}
 	p.update = function(frame){

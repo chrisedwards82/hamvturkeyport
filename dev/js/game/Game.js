@@ -132,6 +132,7 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.soundEnabled = true;
 					manifest.push(
 						{id:hamvturkey.SoundManager.SCORES, src:this.audioPath+'scores.mp3|'+this.audioPath+'scores.ogg'},
+						{id:hamvturkey.SoundManager.THEME, src:this.audioPath+'turkeyvsham.mp3|'+this.audioPath+'turkeyvsham.ogg'},
 						{id:hamvturkey.SoundManager.SAVE, src:this.audioPath+'save.mp3|'+this.audioPath+'save.ogg'},
 						{id:hamvturkey.SoundManager.SHOOT, src:this.audioPath+'shoot.mp3|'+this.audioPath+'shoot.ogg'},
 						{id:hamvturkey.SoundManager.BOING_1, src:this.audioPath+'boing.mp3|'+this.audioPath+'boing.ogg'},
@@ -180,21 +181,44 @@ this.hamvturkey = this.hamvturkey || {};
 				this.container.cache(bounds.x,bounds.y,bounds.width,bounds.height);
 				this.container.mask = this.circlemask;
 				this.circlemask.scaleX = this.circlemask.scaleY = 0;
-				createjs.Tween.get(this.circlemask).wait(1000).to({scaleX:1,scaleY:1},900).call(createjs.proxy(this.startGame,this));
+				createjs.Tween.get(this.circlemask).wait(1000).to({scaleX:1,scaleY:1},900).call(createjs.proxy(this.startSong,this));
 			},
-			
-			startGame:function(){
+			startSong:function(){
 				this.container.uncache();
 				this.container.mask = null;
 				this.stage.removeChild(this.gameon);
-				this.ham.startMoving();
-				this.turkey.startMoving();
-				this.stage.on('click',createjs.proxy(this.onShot,this));
-				this.ham.mousEnabled = false;
-				this.stage.enableMouseOver(10);
 				this.scoreboard.shots.transition(this.shots);
 				this.scoreboard.goals.transition(this.score);
 				this.scoreboard.saves.transition(this.saves);
+				this.turkey.startMoving();
+				this.ham.dance();
+				this.turkey.startMoving();
+				this.ham.startMoving();
+				var game = this, tHam, tTurkey;
+				var turkey_delay = 4500, count=0;
+				var lis = game.ham.on(hamvturkey.Ham.DANCE_COMPLETE,function(){
+					count++;
+					if(count<4){
+						game.turkey.crouch();
+						tTurkey = createjs.Tween.get(game.turkey).wait(1500).call(createjs.proxy(game.turkey.startMoving, game.turkey));
+						tHam = createjs.Tween.get(game.ham).wait(1500).call(createjs.proxy(game.ham.dance, game.ham));
+					}else {
+						game.ham.off(lis);
+						game.startGame();
+						game.turkey.crouch();
+					}
+				});
+				var song = this.sound.playSong(hamvturkey.SoundManager.THEME);
+				song.addEventListener('complete',function(){
+					game.turkey.startMoving();
+				});
+				//createjs.Tween.wait(100).call(createjs.proxy(turkey.crouch, turkey))
+			},
+			startGame:function(){
+				this.ham.startMoving();
+				this.stage.on('click',createjs.proxy(this.onShot,this));
+				this.ham.mousEnabled = false;
+				this.stage.enableMouseOver(10);
 				this.crosshairs = this.container.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
 				this.crosshairs.regX = this.crosshairs.regY = 12.5;
 			},

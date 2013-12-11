@@ -10,6 +10,7 @@ this.hamvturkey = this.hamvturkey || {};
 	SoundManager.IMPACT = 'sfx_impact';
 	SoundManager.SCORES = 'sfx_announcer_scores';
 	SoundManager.SAVE = 'sfx_announcer_save';
+	SoundManager.THEME = 'theme_song';
 
 	var p = SoundManager.prototype = {
 		loader:null,
@@ -17,7 +18,7 @@ this.hamvturkey = this.hamvturkey || {};
 	};
 	
 	p.initialize = function(loader){
-		this.loader = loader;
+		this.loader = loader; 
 		this.boings = [SoundManager.BOING_1,SoundManager.BOING_3,SoundManager.BOING_2];
 		this.announcer.sound = this;
 	}
@@ -26,6 +27,9 @@ this.hamvturkey = this.hamvturkey || {};
 		if(this.soundEnabled){
 			return createjs.Sound.play(this.loader.getResult(id).src);
 		}
+	}
+	p.playSong = function(){
+		return this.playSFX(SoundManager.THEME);
 	}
 	p.boing = function(){
 		var i = Math.round(Math.random()*(this.boings.length-1));

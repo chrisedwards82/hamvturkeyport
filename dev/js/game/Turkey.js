@@ -42,6 +42,9 @@ this.hamvturkey = this.hamvturkey || {};
 		this.sprite = sprite;
 		this.addChild(sprite);
 	}
+	p.crouch = function(){
+		this.sprite.gotoAndStop(0);
+	}
 	p.stopMoving = function(){
 		this.sprite.gotoAndStop(1);
 	}
