@@ -17,7 +17,7 @@ $(document).ready(function(){
 		game = new hamvturkey.Game();
 	}
 	$('.social').shareLinks({
-		media:'facebook,twitter,google,tumblr,email',
+		media:'facebook,twitter,google,email',
 		description:"The battle for ultimate holiday meat supremacy.",
 		title:"Ham vs. Turkey"
 	});
