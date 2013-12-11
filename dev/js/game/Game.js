@@ -95,9 +95,9 @@ this.hamvturkey = this.hamvturkey || {};
 			loadPreloaderAssets:function(){
 				var imgPath = 'assets/img/';
 				manifest= [
-					{src:imgPath+"sprite_preloader_bg.jpg",id:"pl_bg"},
-					{src:imgPath+"sprite_thermometer_bg.png",id:"pl_thermometer"},
-					{src:imgPath+"sprite_thermometer_arrow.png",id:"pl_arrow"},
+					{src:imgPath+"sprite_preloader_bg.jpg",id:hamvturkey.Preloader.BG},
+					{src:imgPath+"sprite_thermometer_bg.png",id:hamvturkey.Preloader.THERMOMETER},
+					{src:imgPath+"sprite_thermometer_arrow.png",id:hamvturkey.Preloader.ARROW}
 				];
 				
 				this.loader = new createjs.LoadQueue(false);
@@ -105,11 +105,10 @@ this.hamvturkey = this.hamvturkey || {};
 				this.loader.loadManifest(manifest);
 			},
 			onPreloaderAssetsLoaded:function(event){
-				this.stage = new createjs.Stage("gameCanvas");
-				createjs.Ticker.setFPS(60);
-				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
+				this.initStage();
 				this.preloader = this.stage.addChild(new hamvturkey.Preloader(this.loader));
 				this.preloader.intro(createjs.proxy(this.loadAssets,this));
+				
 			//	this.loadAssets();
 			},
 			loadAssets:function(){
@@ -143,12 +142,11 @@ this.hamvturkey = this.hamvturkey || {};
 					createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
 					this.loader.installPlugin(createjs.Sound);					
 				}
-				this.loader.addEventListener("complete", createjs.proxy(this.onAssetsLoaded,this));
-				this.loader.addEventListener('progress', createjs.proxy(this.onAssetLoadProgress,this));
+				this.loader.addEventListener('progress', createjs.proxy(this.preloader.onLoadProgress,this.preloader));
+				this.loader.addEventListener("complete", createjs.proxy(this.preloader.onLoadComplete,this.preloader));
+				this.preloader.addEventListener("complete", createjs.proxy(this.onAssetsLoaded,this));
+				
 				this.loader.loadManifest(manifest);
-			},
-			onAssetLoadProgress:function(event){
-				console.log(event);
 			},
 			onAssetsLoaded:function(event){
 				console.log(event);			
@@ -168,6 +166,11 @@ this.hamvturkey = this.hamvturkey || {};
 				this.crosshairs.regX = this.crosshairs.regY = 12.5;
 				this.scoreboard = this.stage.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits")));
 				this.startGame();
+			},
+			initStage:function(){
+				this.stage = new createjs.Stage("gameCanvas");
+				createjs.Ticker.setFPS(60);
+				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
 			},
 			startGame:function(){
 				this.stage.on('click',createjs.proxy(this.onShot,this));
