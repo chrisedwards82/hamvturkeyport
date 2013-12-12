@@ -45,7 +45,7 @@ this.hamvturkey = this.hamvturkey || {};
 	p.showLine = function(line,duration){
 		var chars = line.split('');
 		var center = this.chars.length-chars.length;
-		center = Math.floor(center*.5);
+		center = Math.round(center*.5);
 		this.clearBoard();	
 		for(var i =0;i<chars.length && (i+center<this.chars.length);i++){
 			try{
