@@ -191,7 +191,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.container.uncache();
 				this.container.mask = null;
 				this.stage.removeChild(this.gameon);
-				this.skipSong = true;
+				//this.skipSong = true;
 				if(this.sound.soundEnabled && !this.skipSong){
 					this.turkey.startMoving();
 					this.ham.dance();
@@ -231,7 +231,6 @@ this.hamvturkey = this.hamvturkey || {};
 				},this));
 				this.ham.startMoving();
 				this.turkey.startMoving();
-				
 				this.stage.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);

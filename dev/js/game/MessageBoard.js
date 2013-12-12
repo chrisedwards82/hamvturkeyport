@@ -21,30 +21,52 @@ this.hamvturkey = this.hamvturkey || {};
 		this.addChildAt(new createjs.Bitmap(bg_asset),0);		
 	}
 	p.showMessage = function(lines,duration){
+		createjs.Tween.removeTweens(this);
 		var frameLength = duration/lines.length;
-		
-		this.showLine(lines[0],frameLength,0);
-		return;
-		
 		for(var i = 0;i<lines.length;i++){
-		
-			this.showLine(lines[i],frameLength,i*frameLength);
+			this.queueLine(lines[i],frameLength,i*frameLength);
 		}
+		createjs.Tween.get(this).wait(duration).call(createjs.proxy(this.onMessageFinished,this));
 	};
-	p.showLine = function(line,duration,delay){
+	
+	p.onMessageFinished = function(){
+		this.clearBoard(200);
+		this.dispatchEvent('complete');
+	}
+	p.queueLine = function(line,duration,delay){
+			createjs.Tween.get(this).wait(delay).call(createjs.proxy(
+				function(){
+					console.log(line, delay)
+					this.showLine(line,duration);
+				},this));
+	}
+	p.showLine = function(line,duration){
 		var chars = line.split('');
 		var center = this.chars.length-chars.length;
 		center = Math.floor(center*.5);
-		for(var i =0;i<chars.length;i++){
+		this.clearBoard();	
+		for(var i =0;i<chars.length && (i+center<this.chars.length);i++){
 			this.chars[i+center].transition(this.getFrame(chars[i]));
 		}
 	}
+	p.clearBoard = function(speed){
+		for(var i = 0;i<this.chars.length;i++){
+			if(speed){
+				this.chars[i].transition('blank',speed);
+			}else{
+				this.chars[i].update('blank');
+			}
+		}
+	}
 	p.getFrame = function(val) {
+		console.log(val);
+		if(val == " "){
+			return 'blank';
+		}
 		if(isNaN(val)){
-			console.log(val);
 			switch(val){
 				case '!':
-					return 'exclamationpoint';
+					return 'exclamation';
 				break;
 				case ".":
 				
