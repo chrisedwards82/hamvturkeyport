@@ -2,14 +2,21 @@
 # The humans responsible & technology colophon
 
 # TEAM
+	Developer: Chris Edwards.
+	Twitter: @poopsmagee
+	Site: http://hirechrisedwards.com
 
-    <name> -- <role> -- <twitter>
+	Artist: Paul Forsyth
+	Backing Vocals: Mike Rushing
+	Location: Cleveland, OH, USA
+	Location: Brooklyn, NY, USA
+    
 
 # THANKS
 
-    <name>
+    Paul Forsyth
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
-    jQuery, Modernizr
+    jQuery, Modernizr, CreateJS

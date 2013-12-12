@@ -9,11 +9,10 @@
         <title>Turkey vs. Ham</title>
         <meta name="description" content="The battle for ultimate holiday meat supremacy.">
         <meta name="viewport" content="width=device-width">
-		
 		<meta property="og:title" content="Turkey vs. Ham"/>
 		<meta property="og:description" content="The battle for ultimate holiday meat supremacy."/>
 		<meta property="og:site_name" content="Turkey vs. Ham"/>
-		
+		<link rel="author" href="humans.txt" />
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
