@@ -112,7 +112,7 @@ this.hamvturkey = this.hamvturkey || {};
 				var messages = ['Game over','game','over'];
 				switch(this.score){
 					case 10:
-						messages = ['10 out of 10!','perfect game!!!','congratulations!'];
+						messages = ['10 out of 10!','perfect game!','congrats!!!'];
 					break;
 					case 5:
 						messages = ['5 out of 10?',"It's a draw...",'Try the fish?','Try again.'];
@@ -131,23 +131,18 @@ this.hamvturkey = this.hamvturkey || {};
 					break;
 					default:
 						if(this.score>5){
-							messages.push('Turkey');
-							messages.push('Wins!!!');
-							messages.push('Turkey');
-							messages.push('Wins!!!');
+							messages.push('Turkey Wins!!!');
+							messages.push('Turkey!');
+							messages.push('Wins!');
 							messages.push(this.score+' out of 10...');
-							messages.push('not bad...')
-							messages.push('But can you...')
-							messages.push('Do better?');
+							messages.push('not bad...');
+							messages.push('but can you...')
+							messages.push('do better?');
 							messages.push('try again.');
 						}else {
 							messages.push(this.score+' out of 10?')
-							messages.push(this.score+' out of 10?')
-							messages.push(this.score+' out of 10?')
 							if(this.saves>5){
 								messages.push(this.saves+' saves...')
-								messages.push(this.saves+' saves...')
-								messages.push(this.saves+' saves...')								
 								messages.push("that's...");
 								messages.push('one');
 								messages.push('tough');
@@ -162,7 +157,8 @@ this.hamvturkey = this.hamvturkey || {};
 				this.scoreboard.shots.transition('0');
 				createjs.Tween.get(this.crosshairs).to({alpha:0},500);
 				this.ham.stopMoving();
-				this.scoreboard.messages.showMessage(messages,messages.length*1000,createjs.proxy(this.resetGame,this));
+				this.scoreboard.messages.showMessage(messages,messages.length*1500,createjs.proxy(this.resetGame,this));
+				this.sound.playSFX(hamvturkey.SoundManager.GAMEOVER);
 			},
 			resetGame:function(){
 				this.shots = 10;
@@ -230,6 +226,7 @@ this.hamvturkey = this.hamvturkey || {};
 						{id:hamvturkey.SoundManager.BOING_1, src:this.audioPath+'boing.mp3|'+this.audioPath+'boing.ogg'},
 						{id:hamvturkey.SoundManager.BOING_2, src:this.audioPath+'boing2.mp3|'+this.audioPath+'boing2.ogg'},
 						{id:hamvturkey.SoundManager.BOING_3, src:this.audioPath+'boing3.mp3|'+this.audioPath+'boing3.ogg'},
+						{id:hamvturkey.SoundManager.GAMEOVER, src:this.audioPath+'gameover.mp3|'+this.audioPath+'gameover.ogg'},
 						{id:hamvturkey.SoundManager.IMPACT, src:this.audioPath+'impact.mp3|'+this.audioPath+'impact.ogg'}
 					);
 					createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
@@ -276,7 +273,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.container.uncache();
 				this.container.mask = null;
 				this.stage.removeChild(this.gameon);
-				//this.skipSong = true;
+				this.skipSong = true;
 				if(this.sound.soundEnabled && !this.skipSong){
 					this.turkey.startMoving();
 					this.ham.dance();

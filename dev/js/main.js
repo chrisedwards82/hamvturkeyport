@@ -16,10 +16,12 @@ $(document).ready(function(){
 	} else {
 		game = new hamvturkey.Game();
 	}
+	var desc = $("meta[name=description]").attr('content');
+    var title = $(document).find("title").text();
 	$('.social').shareLinks({
 		media:'facebook,twitter,google,email',
-		description:"The battle for ultimate holiday meat supremacy.",
-		title:"Ham vs. Turkey"
+		description:desc,
+		title:title
 	});
 });
 //$(window).load(function(){});

@@ -11,7 +11,7 @@ this.hamvturkey = this.hamvturkey || {};
 	SoundManager.SCORES = 'sfx_announcer_scores';
 	SoundManager.SAVE = 'sfx_announcer_save';
 	SoundManager.THEME = 'theme_song';
-
+	SoundManager.GAMEOVER = 'game_over';
 	var p = SoundManager.prototype = {
 		loader:null,
 		soundEnabled:false
