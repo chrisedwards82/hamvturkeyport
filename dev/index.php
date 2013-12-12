@@ -11,7 +11,13 @@
         <meta name="viewport" content="width=device-width">
 		<meta property="og:title" content="Turkey vs. Ham"/>
 		<meta property="og:description" content="The battle for ultimate holiday meat supremacy."/>
-		<meta property="og:site_name" content="Turkey vs. Ham"/>
+		<meta property="og:site_name" content="Hire Chris Edwards"/>
+		<meta property="og:type" content="website" />
+		<meta property="og:audio" content="http://example.com/bond/turkeyvsham.mp3" />
+		<meta property="og:url" content="http://www.hirechrisedwards.com/hamvturkey/" />
+		<meta property="og:image" content="http://www.hirechrisedwards.com/hamvturkey/img/og.png" />
+		
+		
 		<link rel="author" href="humans.txt" />
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
