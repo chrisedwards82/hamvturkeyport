@@ -11,34 +11,36 @@ this.hamvturkey = this.hamvturkey || {};
 	    this.Container_initialize();
 		this.chars = [];
 		var i, digit;
-		var paddingX = 22, paddingY =20;
-		for(i=0;i<15;i++){
+		var paddingX = 11, paddingY =14;
+		for(i=0;i<14;i++){
 			digit = this.addChild(new hamvturkey.Digit(ss));
 			digit.x  =paddingX+ i*27;
 			digit.y = paddingY;
 			this.chars.push(digit);
 		}
-		this.addChildAt(new createjs.Bitmap(bg_asset),0);		
+		var bg = this.addChildAt(new createjs.Bitmap(bg_asset),0);		
+		bg.scaleX = bg.scaleY = .9;
+		
 	}
-	p.showMessage = function(lines,duration){
+	p.showMessage = function(lines,duration,callback){
 		createjs.Tween.removeTweens(this);
 		var frameLength = duration/lines.length;
 		for(var i = 0;i<lines.length;i++){
 			this.queueLine(lines[i],frameLength,i*frameLength);
 		}
-		createjs.Tween.get(this).wait(duration).call(createjs.proxy(this.onMessageFinished,this));
+		if(callback){
+			createjs.Tween.get(this).wait(duration).call(callback);
+		}
+		createjs.Tween.get(this).wait(duration).call(createjs.proxy(this.clearBoard,this));
+		
 	};
 	
-	p.onMessageFinished = function(){
-		this.clearBoard(200);
-		this.dispatchEvent('complete');
-	}
 	p.queueLine = function(line,duration,delay){
-			createjs.Tween.get(this).wait(delay).call(createjs.proxy(
-				function(){
-					console.log(line, delay)
-					this.showLine(line,duration);
-				},this));
+		createjs.Tween.get(this).wait(delay).call(createjs.proxy(
+		function(){
+		//	console.log(line, delay)
+			this.showLine(line,duration);
+		},this));
 	}
 	p.showLine = function(line,duration){
 		var chars = line.split('');
@@ -46,7 +48,12 @@ this.hamvturkey = this.hamvturkey || {};
 		center = Math.floor(center*.5);
 		this.clearBoard();	
 		for(var i =0;i<chars.length && (i+center<this.chars.length);i++){
-			this.chars[i+center].transition(this.getFrame(chars[i]));
+			try{
+				this.chars[i+center].transition(this.getFrame(chars[i]));
+			}catch(err){
+				console.log(this,'missing frame?',chars[i]);
+				console.log(err);
+			}
 		}
 	}
 	p.clearBoard = function(speed){
@@ -59,18 +66,45 @@ this.hamvturkey = this.hamvturkey || {};
 		}
 	}
 	p.getFrame = function(val) {
-		console.log(val);
+		//console.log(val);
 		if(val == " "){
 			return 'blank';
 		}
 		if(isNaN(val)){
 			switch(val){
+				case '?':
+					return "questionmark";
+				break;
+				case ';':
+					return "semicolon";
+				case ":":
+					return "colon"; 
+				break;
+				case ',':
+					return "comma";
+				break;
+				case '*':
+					return "asterix";
+				break;
+				case ')':
+					return "rparentheses";
+				break;
+				case "(":
+					return "lparentheses";
+				break;
+				case'"':
+					return "quotes";
+				break;
+				case '-':
+					return 'hyphen';
+				break;
+				case "'":
+					return 'apostrophe';
 				case '!':
 					return 'exclamation';
 				break;
 				case ".":
-				
-				return 'period';
+					return 'period';
 				
 				default:
 					return val.toUpperCase();
@@ -78,7 +112,8 @@ this.hamvturkey = this.hamvturkey || {};
 		
 			}
 		}else {
-			return this.chars[0].getFrame(val);
+			//console.log('number',val,this.chars[0].getFrame(val));
+			return 'n'+val;
 		}
 	}
 	p.announceSave = function(){

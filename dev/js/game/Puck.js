@@ -38,6 +38,9 @@ this.hamvturkey = this.hamvturkey || {};
 		this.killTick()
 		if(this.parent) this.parent.removeChild(this);
 	}
+	p.disappear = function(){
+		Tween.get(this).to({alpha:0},200).call(createjs.proxy(this.kill,this));
+	}
 	p.handleTick = function(event) {
 		var scale = p.fl/(p.fl+this.z);
 		//console.log(scale);

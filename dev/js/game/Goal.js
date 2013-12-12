@@ -25,10 +25,17 @@ this.hamvturkey = this.hamvturkey || {};
 		this.x = x;
 		this.y = y;
 		this.setBounds(this.x,this.y,width,height);
+		
 		//must enable mouseover http://www.createjs.com/Docs/EaselJS/classes/Container.html#property_cursor
 		this.cursor = 'none';
 	}
-
+	p.clearPucks = function(){
+		for(i=0;i<this.children.length;i++){
+			if(this.children[i] instanceof hamvturkey.Puck){
+				this.children[i].disappear();
+			}
+		}
+	}
 	
  
 	hamvturkey.Goal = Goal;

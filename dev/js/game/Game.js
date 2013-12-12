@@ -20,6 +20,7 @@ this.hamvturkey = this.hamvturkey || {};
 			shots:10,
 			saves:0,
 			skipSong:false,
+			shotLanded:true,
 			imgPath:'assets/img/',
 			audioPath:'assets/sound/',
 			init:function(){	
@@ -28,16 +29,15 @@ this.hamvturkey = this.hamvturkey || {};
 			},
 			onShot:function(event){
 				//console.log(event);
+				if(this.shots<=0) return;
+				if(!this.shotLanded) return;
+				this.shotLanded = false;
 				var stageX = this.crosshairs.x;
 				var stageY = this.crosshairs.y;
 				var p = this.container.addChild(new hamvturkey.Puck(this.loader.getResult('puck').src));
 				p.x = 300;
 				p.y = 345;
 				p.on('hit',createjs.proxy(this.onPuckContact,this));
-				if(this.shots>0){
-					this.shots--;
-					this.scoreboard.shots.transition(this.shots);
-				}
 				//to be called after shot animation
 				this.turkey.shoot(
 					function(){
@@ -69,32 +69,119 @@ this.hamvturkey = this.hamvturkey || {};
 							//alert('wide right');
 							puck.deflectRight();
 							this.sound.boing();
+							this.scoreboard.messages.showMessage(["Wide right","wide",'right'],2000);
+							
 						break;
 						case this.goal.left_crossbar:
 							//alert('wide left');
 							this.sound.boing();
 							puck.deflectLeft();
+							this.scoreboard.messages.showMessage(["Wide left!",'wide left!',"you",'just','missed...'],3000);
 							
 						break;
 						case this.goal.top_crossbar:
 							//alert('off the crossbar');
 							this.sound.boing();
 							puck.deflectUp();
+							this.scoreboard.messages.showMessage(["Awwww....","too high",'aim lower!'],2000);
+							
 						break;
 						default:
 							//alert('goal!!!!');
-							this.goal.addChild(puck);
+							this.goal.addChildAt(puck,this.goal.getChildIndex(this.ham)-1);
 							puck.x -=this.goal.x;
 							puck.y-=this.goal.y;
 							puck.drop(50);
 							this.score++;
 							this.scoreboard.goals.transition(this.score);
 							this.sound.announcer.scores();
-							this.scoreboard.messages.showMessage(["Turkey","Scores","!!!!"],3000);
+							this.scoreboard.messages.showMessage(["Turkey","Scores","!!!!","Yeah Buddy!!!"],3000);
+							if(this.score>3)this.ham.speedUp();
 						break;
 					}
 				}
+				this.shotLanded = true;
+					this.shots--;
+					this.scoreboard.shots.transition(this.shots);
+				if(this.shots<=0){
+					this.gameOver();
+				}
 
+			},
+			gameOver:function(){
+				var messages = ['Game over','game','over'];
+				switch(this.score){
+					case 10:
+						messages = ['10 out of 10!','perfect game!!!','congratulations!'];
+					break;
+					case 5:
+						messages = ['5 out of 10?',"It's a draw...",'Try the fish?','Try again.'];
+					break;
+					case 0:
+						messages.push('you missed...');
+						messages.push('every shot...')
+						messages.push('...');
+						messages.push(':(');
+						messages.push(':( :( :( :(');
+						messages.push(':(');
+						messages.push('Are you...');
+						messages.push('A vegetarian?');
+						messages.push(':(');
+
+					break;
+					default:
+						if(this.score>5){
+							messages.push('Turkey');
+							messages.push('Wins!!!');
+							messages.push('Turkey');
+							messages.push('Wins!!!');
+							messages.push(this.score+' out of 10...');
+							messages.push('not bad...')
+							messages.push('But can you...')
+							messages.push('Do better?');
+							messages.push('try again.');
+						}else {
+							messages.push(this.score+' out of 10?')
+							messages.push(this.score+' out of 10?')
+							messages.push(this.score+' out of 10?')
+							if(this.saves>5){
+								messages.push(this.saves+' saves...')
+								messages.push(this.saves+' saves...')
+								messages.push(this.saves+' saves...')								
+								messages.push("that's...");
+								messages.push('one');
+								messages.push('tough');
+								messages.push('ham!');
+							}
+						
+							messages.push('try again.');
+							this.ham.dance();
+						}
+					break;	
+				}
+				this.scoreboard.shots.transition('0');
+				createjs.Tween.get(this.crosshairs).to({alpha:0},500);
+				this.ham.stopMoving();
+				this.scoreboard.messages.showMessage(messages,messages.length*1000,createjs.proxy(this.resetGame,this));
+			},
+			resetGame:function(){
+				this.shots = 10;
+				this.score = 0;
+				this.saves = 0;
+				var messages = ["Fire","when",'ready...'];
+				this.scoreboard.messages.showMessage(messages,messages.length*1000);
+				this.scoreboard.shots.transition(this.shots,200,0);
+				this.scoreboard.saves.transition(this.saves,200,0);
+				this.scoreboard.goals.transition(this.score,200,0);
+				createjs.Tween.get(this.crosshairs).to({alpha:1},500);
+				this.ham.startMoving();
+				var p, i;
+				for(i=0;i<this.container.children.length;i++){
+					if(this.container.children[i] instanceof hamvturkey.Puck){
+						this.container.children[i].disappear();
+					}
+				}
+				this.goal.clearPucks();
 			},
 			loadPreloaderAssets:function(){
 				var imgPath = 'assets/img/';
@@ -155,7 +242,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.loader.loadManifest(manifest);
 			},
 			onAssetsLoaded:function(event){
-				console.log(event);			
+				//console.log(event);			
 				//TODO wrap this all in a "click/touch to play" event
 				this.container = this.stage.addChildAt(new createjs.Container(),0);
 				this.container.setBounds(0,0,550,367);
@@ -166,9 +253,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.turkey.scaleX = this.turkey.scaleY = .9;
 				this.turkey.buildSprite(this.loader.getResult("turkey"));
 				this.goal = this.container.addChild(new hamvturkey.Goal(83,60,250,200,7,.01));
-				this.ham =  this.container.addChild(new hamvturkey.Ham(85));
-				this.ham.x = this.goal.x;
-				this.ham.y = this.goal.y;
+				this.ham =  this.goal.addChild(new hamvturkey.Ham(85));
 				this.ham.buildSprite(this.loader.getResult("ham"));
 				this.scoreboard = this.container.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits"),this.loader.getResult("messageboard")));
 				createjs.Tween.get(this).wait(500).call(createjs.proxy(this.circleWipe,this));

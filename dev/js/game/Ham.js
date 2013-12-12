@@ -17,9 +17,10 @@ this.hamvturkey = this.hamvturkey || {};
 	 	this.range = range;
 		this.doMove = false;
 		//this.background = new createjs.Shape();
-		//this.background.graphics.beginFill(color).drawRect(0, 0, 60,80);
+		//this.background.graphics.beginFill('green').drawRect(0, 0, 60,60);
 		//this.addChild(this.background);
 		//this.on("tick", this.handleTick);
+		
 		this.mouseChildren = false;
 	}
 	p.buildSprite = function(img){
@@ -29,6 +30,7 @@ this.hamvturkey = this.hamvturkey || {};
 				"save":[3,7],
 				"rest":[6],
 				"jump":[5,10],
+				"angry":[5,10],
 				"dance": {
 				        	frames: [5,6,7,8,9,10,5,6,7,8,9,10,5,6,7,8,9,10,5,6,7,8,9,10],
 							next: "jump",
@@ -45,27 +47,45 @@ this.hamvturkey = this.hamvturkey || {};
 			}
 		});
 		ss.getAnimation('dance').speed = .35;
+		ss.getAnimation('angry').speed = .3;
 		ss.getAnimation('jump').speed = .5;
 		ss.getAnimation('save').speed = 2;
 		ss.getAnimation('save').next = 'rest';
 		ss.getAnimation('jump').next = 'rest';
+		ss.getAnimation('angry').next = 'angry';
 		this.sprite = new createjs.Sprite(ss,'rest');
+		this.sprite.x = -10;
+		this.sprite.y = -5;
 		this.sprite.scaleX = this.sprite.scaleY = .5;
+		
 		this.addChild(this.sprite);
 		this.sprite.on('animationend',createjs.proxy(this.danceComplete,this));
 		
 	}
 	p.move = function() {
 		if(!this.doMove) return;
-		var r = this.range*.5   
-		this.sprite.x = r+Math.sin(p.count++*this.speed)*r-25;
+		var r = this.range*.5;   
+		this.x = 10+Math.sin(this.count)*r;
+		this.count+=this.speed;
+		//this.setBounds(this.x,this.y,this.sprite.width,this.sprite.height)
+		
 		///	console.log(this.background.x);
 	}
 	p.startMoving = function(){
+		this.speed = .1;
+		this.sprite.gotoAndPlay('rest');
 		this.doMove = true;
+		this.range = 100;
+	}
+	p.speedUp = function(){
+		if(this.speed<.2) {
+			this.speed+=.01;
+		}else {
+			this.sprite.gotoAndPlay('angry');	
+		}
 	}
 	p.stopMoving = function(){
-		this.doMove = false;
+		this.doMove = false;		
 	}
 	p.save = function(){
 		this.sprite.gotoAndPlay('save');

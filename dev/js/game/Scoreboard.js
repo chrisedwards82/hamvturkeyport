@@ -56,6 +56,8 @@ this.hamvturkey = this.hamvturkey || {};
 				"Y":[57,57],
 				"Z":[58,58],
 				"questionmark":[12,12],
+				"semicolon": [11,11],
+				"colon": [10,10],
 				"period":[8,8],
 				"comma":[7,7],
 				"asterix":[6,6],
@@ -88,7 +90,8 @@ this.hamvturkey = this.hamvturkey || {};
 		//this.scaleX = this.scaleY = .75;
 		this.x = this.hideX;
 		this.messages = this.addChild(new hamvturkey.Messageboard(ss,message_asset));
-		this.messages.y =113; 
+		this.messages.x = 22;
+		this.messages.y =108; 
 		//this.x = 112;
 	}
 	p.lower = function(callback){
@@ -98,8 +101,8 @@ this.hamvturkey = this.hamvturkey || {};
 	}
 	p.raise = function(callback) {
 		if(!callback) callback = function(){};
-		createjs.Tween.get(this).to({y:this.hideY},2500,createjs.Ease.backIn).call(callback)
-		createjs.Tween.get(this).wait(500).to({scaleX:1,scaleY:1,x:this.hideX},500,createjs.Ease.backIn);
+	
+		createjs.Tween.get(this).wait(500).to({scaleX:.9,scaleY:.9,x:this.hideX},500,createjs.Ease.circIn).call(callback);
 	}
 	
 	hamvturkey.Scoreboard = Scoreboard;
