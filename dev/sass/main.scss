@@ -10,7 +10,6 @@
 body, html{
 	text-align: center;
 	background-image: url('../img/bg.jpg');
-	
 }
 
 header {
@@ -42,6 +41,8 @@ header {
 	border-bottom: 4px solid #fb7116;
 	padding: 0;
 	position: relative;
+	overflow: hidden;
+	
 	&.touch-to-play{
 		
 		.touch-spot{

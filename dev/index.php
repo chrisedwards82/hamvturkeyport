@@ -10,7 +10,7 @@
         <meta name="description" content="The battle for ultimate holiday meat supremacy.">
         <meta name="viewport" content="width=device-width">
 		<meta property="og:title" content="Turkey vs. Ham"/>
-		<meta property="og:description" content="The battle for ultimate holiday meat supremacy."/>
+		<meta property="og:description" content="The battle for ultimate holiday meat supremacy. (Artwork by Paul Forsyth)"/>
 		<meta property="og:site_name" content="Hire Chris Edwards"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:audio" content="http://example.com/bond/turkeyvsham.mp3" />

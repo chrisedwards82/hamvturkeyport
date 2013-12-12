@@ -137,7 +137,7 @@ body, html {
   background-image: url("../img/bg.jpg");
 }
 
-/* line 16, ../sass/main.scss */
+/* line 15, ../sass/main.scss */
 header {
   width: 100%;
   background-color: #7a0b23;
@@ -151,7 +151,7 @@ header {
   border-bottom: 4px solid #fb7116;
   padding: .5em 0;
 }
-/* line 25, ../sass/main.scss */
+/* line 24, ../sass/main.scss */
 header h1 {
   margin: 0 auto;
   display: block;
@@ -165,7 +165,7 @@ header h1 {
   width: 300px;
 }
 
-/* line 38, ../sass/main.scss */
+/* line 37, ../sass/main.scss */
 #game {
   width: 100%;
   border-top: 3px solid #2d191a;
@@ -173,8 +173,9 @@ header h1 {
   border-bottom: 4px solid #fb7116;
   padding: 0;
   position: relative;
+  overflow: hidden;
 }
-/* line 47, ../sass/main.scss */
+/* line 48, ../sass/main.scss */
 #game.touch-to-play .touch-spot {
   position: relative;
   display: block;
@@ -187,7 +188,7 @@ header h1 {
   background-repeat: no-repeat;
 }
 
-/* line 61, ../sass/main.scss */
+/* line 62, ../sass/main.scss */
 #gameCanvas {
   background-image: url("../img/oven.jpg");
   background-position: center top;
@@ -196,7 +197,7 @@ header h1 {
   cursor: hidden;
 }
 
-/* line 70, ../sass/main.scss */
+/* line 71, ../sass/main.scss */
 footer {
   font-family: 'Arial,Helvetica,sans-serif';
   width: 100%;
@@ -205,7 +206,7 @@ footer {
   border-bottom: 3px solid #2d191a;
   padding: .6em 0;
 }
-/* line 78, ../sass/main.scss */
+/* line 79, ../sass/main.scss */
 footer ul li {
   display: inline-block;
 }
