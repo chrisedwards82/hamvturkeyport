@@ -52,8 +52,12 @@ this.hamvturkey = this.hamvturkey || {};
 				var puck = event.currentTarget;
 				var pt = this.goal.globalToLocal(puck.x,puck.y);
 				var arr = this.goal.getObjectsUnderPoint(pt.x,pt.y);
-				//console.log(pt);
-				if(this.ham.hitTest(pt.x,pt.y)){
+				//console.log('puckpoint:',pt);
+				//console.log('hamx:',this.ham.x);
+				//if(this.ham.hitTest(pt.x,pt.y)){
+				var h = this.ham.getBounds();
+				if((pt.x>h.x) && (pt.x < h.x+h.width) && (pt.y > h.y) && (pt.y<h.y+h.height) ){
+					
 					//alert('save by the ham');
 					this.ham.save();
 					this.sound.impact();
@@ -171,7 +175,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.scoreboard.goals.transition(this.score,200,0);
 				createjs.Tween.get(this.crosshairs).to({alpha:1},500);
 				this.ham.startMoving();
-				var p, i;
+				var i;
 				for(i=0;i<this.container.children.length;i++){
 					if(this.container.children[i] instanceof hamvturkey.Puck){
 						this.container.children[i].disappear();

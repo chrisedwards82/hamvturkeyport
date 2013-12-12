@@ -39,8 +39,8 @@ this.hamvturkey = this.hamvturkey || {};
 			},
 			"images":[img],
 			"frames":{
-				"regX":0,
-				"regY":0,
+				"regX":10,
+				"regY":5,
 				"height":146,
 				"width":142,
 				"count":11
@@ -54,8 +54,8 @@ this.hamvturkey = this.hamvturkey || {};
 		ss.getAnimation('jump').next = 'rest';
 		ss.getAnimation('angry').next = 'angry';
 		this.sprite = new createjs.Sprite(ss,'rest');
-		this.sprite.x = -10;
-		this.sprite.y = -5;
+	
+		this.sprite.x = this.sprite.y = 0;
 		this.sprite.scaleX = this.sprite.scaleY = .5;
 		
 		this.addChild(this.sprite);
@@ -65,9 +65,9 @@ this.hamvturkey = this.hamvturkey || {};
 	p.move = function() {
 		if(!this.doMove) return;
 		var r = this.range*.5;   
-		this.x = 10+Math.sin(this.count)*r;
+		this.x = Math.sin(this.count)*r;
 		this.count+=this.speed;
-		//this.setBounds(this.x,this.y,this.sprite.width,this.sprite.height)
+		this.setBounds(this.x,this.y,60,60)
 		
 		///	console.log(this.background.x);
 	}
@@ -75,7 +75,6 @@ this.hamvturkey = this.hamvturkey || {};
 		this.speed = .1;
 		this.sprite.gotoAndPlay('rest');
 		this.doMove = true;
-		this.range = 100;
 	}
 	p.speedUp = function(){
 		if(this.speed<.2) {
