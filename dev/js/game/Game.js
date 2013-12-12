@@ -34,7 +34,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.shotLanded = false;
 				var stageX = this.crosshairs.x;
 				var stageY = this.crosshairs.y;
-				var p = this.container.addChild(new hamvturkey.Puck(this.loader.getResult('puck').src));
+				var p = this.container.addChildAt(new hamvturkey.Puck(this.loader.getResult('puck').src),this.container.getChildIndex(this.turkey),-1);
 				p.x = 300;
 				p.y = 345;
 				p.on('hit',createjs.proxy(this.onPuckContact,this));
