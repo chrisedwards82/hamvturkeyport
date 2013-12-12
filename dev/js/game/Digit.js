@@ -18,12 +18,21 @@ this.hamvturkey = this.hamvturkey || {};
 	p.update = function(frame){
 		this.num.gotoAndStop(frame);
 	}
+	p.getFrame = function(val,index){
+		if(val<10) val = "0"+val;			
+		val = val.toString().split("");
+		return 'n'+val[index];
+	}
 	p.transition = function(frame,speed,delay) {
 		var digit = this;
 		if(!speed) speed = 50;
+		var outspeed = speed;
 		if(!delay) delay = 0;
-		p._transitionL = createjs.Tween.get(this.num,{override:true}).to({alpha:0},speed).call(function(){
-			digit.update(val);
+		if(this.num.currentAnimationFrame ==  'bg'){
+			outspeed = 0;
+		}
+		createjs.Tween.get(this.num,{override:true}).to({alpha:0},outspeed).call(function(){
+			digit.update(frame);
 		}).wait(delay).to({alpha:1},speed);
 	
 	}

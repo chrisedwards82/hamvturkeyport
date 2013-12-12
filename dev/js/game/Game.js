@@ -61,6 +61,8 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.announcer.save();
 					this.saves++;
 					this.scoreboard.saves.transition(this.saves);
+					this.scoreboard.messages.announceSave();
+					
 				}else {					
 					switch(arr[0]){
 						case this.goal.right_crossbar:
@@ -88,6 +90,7 @@ this.hamvturkey = this.hamvturkey || {};
 							this.score++;
 							this.scoreboard.goals.transition(this.score);
 							this.sound.announcer.scores();
+							this.scoreboard.messages.showMessage(["Turkey","Scores","!!!!"],3000);
 						break;
 					}
 				}
@@ -122,6 +125,7 @@ this.hamvturkey = this.hamvturkey || {};
 					{src:this.imgPath+"sprite_ham.png",id:"ham"},
 					{src:this.imgPath+"sprite_digits_trans.png",id:"digits"},
 					{src:this.imgPath+"sprite_scoreboard.png",id:"scoreboard"},
+					{src:this.imgPath+"sprite_message_bg.png",id:"messageboard"},
 					{src:this.imgPath+"crosshairs.png",id:"crosshairs"},
 					{src:this.imgPath+"sprite_fruitcake.png",id:"puck"},
 					{src:this.imgPath+"sprite_gameon_bg.jpg",id:"gameon"}
@@ -166,7 +170,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.ham.x = this.goal.x;
 				this.ham.y = this.goal.y;
 				this.ham.buildSprite(this.loader.getResult("ham"));
-				this.scoreboard = this.container.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits")));
+				this.scoreboard = this.container.addChild(new hamvturkey.Scoreboard(this.loader.getResult("scoreboard"),this.loader.getResult("digits"),this.loader.getResult("messageboard")));
 				createjs.Tween.get(this).wait(500).call(createjs.proxy(this.circleWipe,this));
 			},
 			circleWipe:function(){
@@ -189,7 +193,6 @@ this.hamvturkey = this.hamvturkey || {};
 				this.stage.removeChild(this.gameon);
 				this.skipSong = true;
 				if(this.sound.soundEnabled && !this.skipSong){
-					
 					this.turkey.startMoving();
 					this.ham.dance();
 					var game = this, tHam, tTurkey;
@@ -220,16 +223,22 @@ this.hamvturkey = this.hamvturkey || {};
 				}
 			},
 			startGame:function(){
+				this.scoreboard.lower(createjs.proxy(function(){
+					this.scoreboard.shots.transition(this.shots,200,0	);
+					this.scoreboard.saves.transition(this.saves,200,500);
+					this.scoreboard.goals.transition(this.score,200,500);
+					
+				},this));
 				this.ham.startMoving();
 				this.turkey.startMoving();
-				this.scoreboard.shots.transition(this.shots);
-				this.scoreboard.goals.transition(this.score);
-				this.scoreboard.saves.transition(this.saves);
+				
 				this.stage.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
 				this.crosshairs = this.container.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
 				this.crosshairs.regX = this.crosshairs.regY = 12.5;
+				this.scoreboard.messages.showMessage(["Click Goal",'To shoot!',"Click goal","to shoot!"],5000);
+				
 			},
 			initStage:function(){
 				this.stage = new createjs.Stage("gameCanvas");

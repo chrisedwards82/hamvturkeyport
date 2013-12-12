@@ -14,21 +14,17 @@ this.hamvturkey = this.hamvturkey || {};
 		this.r = this.addChild(new hamvturkey.Digit(ss));
 		this.r.x = 28;
 	}
+	
 	p.update = function(val){
-		if(val<10){
-			val = "0"+val;			
-		}
-		val = val.toString().split("");	
-		this.l.update('n'+val[0]);
-		this.r.update('n'+val[1]);
+			
+		this.l.update(this.l.getFrame(val,0));
+		this.r.update(this.r.getFrame(val,1));
 	}
-	p.transition = function(val,speed) {
-		var digit = this;
-		if(!speed) speed = 50;
-		p._transitionL = createjs.Tween.get(this.l,{override:true}).to({alpha:0},speed).call(function(){
-			digit.update(val);
-		}).wait(speed).to({alpha:1.5},speed);
-		p._transitionR = createjs.Tween.get(this.r,{override:true}).to({alpha:0},speed).wait(speed).to({alpha:1.5},speed);
+	
+	p.transition = function(val,speed,delay) {
+		this.l.transition(this.l.getFrame(val,0),speed,delay);
+		this.r.transition(this.r.getFrame(val,1),speed,delay);
 	}
+	
 	hamvturkey.DoubleDigit = DoubleDigit;
 }());
