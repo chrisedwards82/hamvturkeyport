@@ -211,6 +211,17 @@ footer ul li {
   display: inline-block;
 }
 
+@media (max-width: 600px) {
+  /* line 87, ../sass/main.scss */
+  #game2 {
+    height: 367px;
+  }
+  /* line 89, ../sass/main.scss */
+  #game2 #gameCanvas {
+    position: absolute;
+    right: 0;
+  }
+}
 /* line 1, ../sass/_sharelinks.scss */
 ul.share-links {
   display: block;

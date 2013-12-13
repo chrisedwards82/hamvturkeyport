@@ -34,7 +34,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.shotLanded = false;
 				var stageX = this.crosshairs.x;
 				var stageY = this.crosshairs.y;
-				var p = this.container.addChildAt(new hamvturkey.Puck(this.loader.getResult('puck').src),this.container.getChildIndex(this.turkey),-1);
+				var p = this.container.addChildAt(new hamvturkey.Puck(this.loader.getResult('puck').src),this.container.getChildIndex(this.turkey));
 				p.x = 300;
 				p.y = 345;
 				p.on('hit',createjs.proxy(this.onPuckContact,this));
@@ -277,7 +277,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.container.uncache();
 				this.container.mask = null;
 				this.stage.removeChild(this.gameon);
-				//this.skipSong = true;
+				this.skipSong = true;
 				if(this.sound.soundEnabled && !this.skipSong){
 					this.turkey.startMoving();
 					this.ham.dance();

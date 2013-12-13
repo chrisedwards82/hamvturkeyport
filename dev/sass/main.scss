@@ -41,7 +41,6 @@ header {
 	border-bottom: 4px solid #fb7116;
 	padding: 0;
 	position: relative;
-	overflow: hidden;
 	
 	&.touch-to-play{
 		
@@ -78,6 +77,17 @@ footer {
 	ul{
 		li{
 			display: inline-block;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+
+	#game2 {
+		height: 367px;
+		#gameCanvas{
+			position: absolute;
+			right: 0;
 		}
 	}
 }
