@@ -46,6 +46,10 @@ $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') 
 		<footer>
 			<ul class="social">
 			</ul>
+			<ul class="credit">
+				<li>Developed using <a href="http://www.createjs.com/#!/EaselJS" target="_blank">Easel JS</a> by <a href="http://hirechrisedwards.com" target="_blank">Chris Edwards</a></li>
+				<li>Illustration, Art Direction, and Music by <a href="http://paulforsyth.carbonmade.com/" target="_blank">Paul Forsyth</a></li>
+			</ul>
 		</footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
