@@ -20,21 +20,30 @@ this.hamvturkey = this.hamvturkey || {};
 			shots:10,
 			saves:0,
 			skipSong:false,
+			isTouch:false,
 			shotLanded:true,
 			imgPath:'assets/img/',
 			audioPath:'assets/sound/',
-			init:function(skipSong){	
+			init:function(isTouch,skipSong){	
 				//
-				this.skipSong = skipSong;
+				if(!skipSong){
+					this.skipSong = isTouch;
+				}
+				this.isTouch = isTouch;
 				this.loadPreloaderAssets();
 			},
 			onShot:function(event){
-				//console.log(event);
+				console.log(event);
 				if(this.shots<=0) return;
 				if(!this.shotLanded) return;
 				this.shotLanded = false;
-				var stageX = this.crosshairs.x;
-				var stageY = this.crosshairs.y;
+				
+				var stageX = event.stageX;
+				var stageY = event.stageY;
+				if(this.crosshairs){
+					stageX = this.crosshairs.x;
+					stageY = this.crosshairs.y;
+				}
 				var p = this.container.addChildAt(new hamvturkey.Puck(this.loader.getResult('puck').src),this.container.getChildIndex(this.turkey));
 				p.x = 300;
 				p.y = 345;
@@ -160,7 +169,7 @@ this.hamvturkey = this.hamvturkey || {};
 					break;	
 				}
 				this.scoreboard.shots.transition('0');
-				createjs.Tween.get(this.crosshairs).to({alpha:0},500);
+				if(this.crosshairs) createjs.Tween.get(this.crosshairs).to({alpha:0},500);
 				this.ham.stopMoving();
 				this.scoreboard.messages.showMessage(messages,messages.length*1500,createjs.proxy(this.resetGame,this));
 				this.sound.playSFX(hamvturkey.SoundManager.GAMEOVER);
@@ -174,7 +183,7 @@ this.hamvturkey = this.hamvturkey || {};
 				this.scoreboard.shots.transition(this.shots,200,0);
 				this.scoreboard.saves.transition(this.saves,200,0);
 				this.scoreboard.goals.transition(this.score,200,0);
-				createjs.Tween.get(this.crosshairs).to({alpha:1},500);
+				if(this.crosshairs) createjs.Tween.get(this.crosshairs).to({alpha:1},500);
 				this.ham.startMoving();
 				var i;
 				for(i=0;i<this.container.children.length;i++){
@@ -319,12 +328,18 @@ this.hamvturkey = this.hamvturkey || {};
 				},this));
 				this.ham.startMoving();
 				this.turkey.startMoving();
-				this.stage.on('click',createjs.proxy(this.onShot,this));
+				this.container.on('click',createjs.proxy(this.onShot,this));
 				this.ham.mousEnabled = false;
 				this.stage.enableMouseOver(10);
-				this.crosshairs = this.container.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
-				this.crosshairs.regX = this.crosshairs.regY = 12.5;
-				this.scoreboard.messages.showMessage(["Click Goal",'To shoot!',"Click goal","to shoot!"],5000);
+				if(!this.isTouch){
+					this.crosshairs = this.container.addChild(new createjs.Bitmap(this.loader.getResult('crosshairs')));
+					this.crosshairs.regX = this.crosshairs.regY = 12.5;
+				}
+				var action = "Click";
+				if(this.isTouch) action = "Tap";
+				var messages = [];
+				for(var i = 0;i<10;i++) messages.push(action+' goal','to shoot');
+				this.scoreboard.messages.showMessage(messages,messages.length*2000);
 				
 			},
 			initStage:function(){
@@ -333,11 +348,12 @@ this.hamvturkey = this.hamvturkey || {};
 				createjs.Ticker.addEventListener("tick", createjs.proxy(this.tick,this));
 			},
 			tick:function(event){
-				if(this.crosshairs) this.updateCursor();
+				this.updateCursor();
 				if(this.ham) this.ham.move();
 				this.stage.update();
 			},
 			updateCursor:function(){
+				if(!this.crosshairs) return;
 				var goal = this.goal.getBounds();
 				var mouseX = this.stage.mouseX;
 				var mouseY = this.stage.mouseY;
