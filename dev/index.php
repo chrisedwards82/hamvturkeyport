@@ -22,7 +22,7 @@ $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') 
 		<meta property="og:type" content="website" />
 		<meta property="og:audio" content="http://example.com/bond/turkeyvsham.mp3" />
 		<meta property="og:url" content="http://www.hirechrisedwards.com/hamvturkey/" />
-		<meta property="og:image" content="http://www.hirechrisedwards.com/hamvturkey/img/og.png" />
+		<meta property="og:image" content="http://www.hirechrisedwards.com/hamvturkey/img/og2.png" />
 		
 		
 		<link rel="author" href="humans.txt" />
