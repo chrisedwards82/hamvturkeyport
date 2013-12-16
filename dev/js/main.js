@@ -3,6 +3,8 @@ var game, isTouchDevice = false;
 $(document).ready(function(){
 	//alert("let's do it");
 	//isTouchDevice = true;
+	isTouchDevic = !$('html').hasClass('no-touch');
+	//alert(isTouchDevice);
 	if(isTouchDevice){
 		//launch game on touch prompt
 		$('#game').addClass('touch-to-play');
@@ -16,6 +18,7 @@ $(document).ready(function(){
 	} else {
 		game = new hamvturkey.Game();
 	}
+	
 	var desc = $("meta[name=description]").attr('content');
     var title = $(document).find("title").text();
 	$('.social').shareLinks({

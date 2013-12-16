@@ -173,6 +173,7 @@ header h1 {
   border-bottom: 4px solid #fb7116;
   padding: 0;
   position: relative;
+  overflow: hidden;
 }
 /* line 48, ../sass/main.scss */
 #game.touch-to-play .touch-spot {
@@ -212,11 +213,11 @@ footer ul li {
 
 @media (max-width: 600px) {
   /* line 87, ../sass/main.scss */
-  #game2 {
+  #game {
     height: 367px;
   }
   /* line 89, ../sass/main.scss */
-  #game2 #gameCanvas {
+  #game #gameCanvas {
     position: absolute;
     right: 0;
   }
