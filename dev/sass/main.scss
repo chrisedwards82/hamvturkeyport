@@ -93,7 +93,11 @@ footer {
 	}
 }
 @media (screen and max-width: 480px){
-	
+	#game {
+		#gameCanvas{
+			left:-38%;
+		}
+	}
 }
 
 

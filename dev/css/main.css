@@ -222,6 +222,12 @@ footer ul li {
     right: 0;
   }
 }
+@media (max-width: 480px) {
+  /* line 97, ../sass/main.scss */
+  #game #gameCanvas {
+    left: -38%;
+  }
+}
 /* line 1, ../sass/_sharelinks.scss */
 ul.share-links {
   display: block;
