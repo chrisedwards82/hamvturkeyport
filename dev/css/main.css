@@ -63,7 +63,7 @@ textarea {
   padding: 0.2em 0;
 }
 
-/* line 17, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -85,45 +85,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../Users/chrisedwards82/.gem/ruby/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -137,7 +137,7 @@ body, html {
   background-image: url("../img/bg.jpg");
 }
 
-/* line 15, ../sass/main.scss */
+/* line 16, ../sass/main.scss */
 header {
   width: 100%;
   background-color: #7a0b23;
@@ -151,7 +151,7 @@ header {
   border-bottom: 4px solid #fb7116;
   padding: .5em 0;
 }
-/* line 24, ../sass/main.scss */
+/* line 25, ../sass/main.scss */
 header h1 {
   margin: 0 auto;
   display: block;
@@ -165,7 +165,7 @@ header h1 {
   width: 300px;
 }
 
-/* line 37, ../sass/main.scss */
+/* line 38, ../sass/main.scss */
 #game {
   width: 100%;
   border-top: 3px solid #2d191a;
@@ -173,7 +173,6 @@ header h1 {
   border-bottom: 4px solid #fb7116;
   padding: 0;
   position: relative;
-  overflow: hidden;
 }
 /* line 48, ../sass/main.scss */
 #game.touch-to-play .touch-spot {

@@ -1,8 +1,15 @@
+<?php
+require_once 'includes/Mobile_Detect.php';
+$detect = new Mobile_Detect;
+$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,7 +53,7 @@
         <script src="js/plugins.js"></script>
 		<script src="//code.createjs.com/createjs-2013.09.25.min.js"></script>
 		<?php include 'includes/_gamejs.php' ?>
-	
+		<script type="text/javascript"> $('body').addClass("device_<?php echo $deviceType;?>"); </script>
         <script src="js/main.js"></script>
         <script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
