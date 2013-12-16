@@ -277,7 +277,6 @@ this.hamvturkey = this.hamvturkey || {};
 				this.container.uncache();
 				this.container.mask = null;
 				this.stage.removeChild(this.gameon);
-				this.skipSong = true;
 				if(this.sound.soundEnabled && !this.skipSong){
 					this.turkey.startMoving();
 					this.ham.dance();
