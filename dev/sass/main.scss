@@ -85,7 +85,7 @@ footer {
 @media (screen and max-width: 600px) {
 	#game {
 		height: 367px;
-		#gameCanvas{
+		#gameCanvas, .touch-spot{
 			position: absolute;
 			right: 0;
 		}
@@ -93,7 +93,7 @@ footer {
 }
 @media (screen and max-width: 480px){
 	#game {
-		#gameCanvas{
+		#gameCanvas, .touch-spot{
 			left:-38%;
 		}
 	}

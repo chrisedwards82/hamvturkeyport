@@ -217,14 +217,14 @@ footer ul li {
     height: 367px;
   }
   /* line 88, ../sass/main.scss */
-  #game #gameCanvas {
+  #game #gameCanvas, #game .touch-spot {
     position: absolute;
     right: 0;
   }
 }
 @media (max-width: 480px) {
   /* line 96, ../sass/main.scss */
-  #game #gameCanvas {
+  #game #gameCanvas, #game .touch-spot {
     left: -38%;
   }
 }
