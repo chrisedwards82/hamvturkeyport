@@ -82,8 +82,7 @@ footer {
 	}
 }
 
-@media (max-width: 600px) {
-
+@media (screen and max-width: 600px) {
 	#game {
 		height: 367px;
 		#gameCanvas{

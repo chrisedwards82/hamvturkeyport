@@ -3,7 +3,15 @@ var game, isTouchDevice = false;
 $(document).ready(function(){
 	//alert("let's do it");
 	//isTouchDevice = true;
-	isTouchDevic = !$('html').hasClass('no-touch');
+	switch($('body').attr('data-device')){
+		case 'tablet':
+		case 'phone':
+			isTouchDevice = true;
+		break;
+	}	
+	
+	
+	//!$('html').hasClass('no-touch');
 	//alert(isTouchDevice);
 	if(isTouchDevice){
 		//launch game on touch prompt
@@ -13,7 +21,7 @@ $(document).ready(function(){
 		$('.touch-spot').click(function(event){
 			$(this).hide()
 			$('#gameCanvas').show();
-		 	game = new hamvturkey.Game();
+		 	game = new hamvturkey.Game(true);
 		})
 	} else {
 		game = new hamvturkey.Game();

@@ -212,18 +212,18 @@ footer ul li {
 }
 
 @media (max-width: 600px) {
-  /* line 87, ../sass/main.scss */
+  /* line 86, ../sass/main.scss */
   #game {
     height: 367px;
   }
-  /* line 89, ../sass/main.scss */
+  /* line 88, ../sass/main.scss */
   #game #gameCanvas {
     position: absolute;
     right: 0;
   }
 }
 @media (max-width: 480px) {
-  /* line 97, ../sass/main.scss */
+  /* line 96, ../sass/main.scss */
   #game #gameCanvas {
     left: -38%;
   }

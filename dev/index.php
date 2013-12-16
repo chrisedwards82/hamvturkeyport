@@ -53,7 +53,10 @@ $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') 
         <script src="js/plugins.js"></script>
 		<script src="//code.createjs.com/createjs-2013.09.25.min.js"></script>
 		<?php include 'includes/_gamejs.php' ?>
-		<script type="text/javascript"> $('body').addClass("device_<?php echo $deviceType;?>"); </script>
+		<script type="text/javascript"> 
+			$('body').addClass("device_<?php echo $deviceType;?>"); 
+			$('body').attr("data-device", "<?php echo $deviceType;?>"); 			
+		</script>
         <script src="js/main.js"></script>
         <script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -1,8 +1,8 @@
 this.hamvturkey = this.hamvturkey || {};
 (function(){
 	
-	function Game(){
-		this.init();
+	function Game(skipSong){
+		this.init(skipSong);
 	}
 	Game.prototype = {
 			//
@@ -23,8 +23,9 @@ this.hamvturkey = this.hamvturkey || {};
 			shotLanded:true,
 			imgPath:'assets/img/',
 			audioPath:'assets/sound/',
-			init:function(){	
+			init:function(skipSong){	
 				//
+				this.skipSong = skipSong;
 				this.loadPreloaderAssets();
 			},
 			onShot:function(event){
@@ -224,7 +225,6 @@ this.hamvturkey = this.hamvturkey || {};
 					this.sound.soundEnabled = true;
 					manifest.push(
 						{id:hamvturkey.SoundManager.SCORES, src:this.audioPath+'scores.mp3|'+this.audioPath+'scores.ogg'},
-						{id:hamvturkey.SoundManager.THEME, src:this.audioPath+'turkeyvsham.mp3|'+this.audioPath+'turkeyvsham.ogg'},
 						{id:hamvturkey.SoundManager.SAVE, src:this.audioPath+'save.mp3|'+this.audioPath+'save.ogg'},
 						{id:hamvturkey.SoundManager.SHOOT, src:this.audioPath+'shoot.mp3|'+this.audioPath+'shoot.ogg'},
 						{id:hamvturkey.SoundManager.BOING_1, src:this.audioPath+'boing.mp3|'+this.audioPath+'boing.ogg'},
@@ -233,6 +233,9 @@ this.hamvturkey = this.hamvturkey || {};
 						{id:hamvturkey.SoundManager.GAMEOVER, src:this.audioPath+'gameover.mp3|'+this.audioPath+'gameover.ogg'},
 						{id:hamvturkey.SoundManager.IMPACT, src:this.audioPath+'impact.mp3|'+this.audioPath+'impact.ogg'}
 					);
+					if(!this.skipSong){
+						manifest.push({id:hamvturkey.SoundManager.THEME, src:this.audioPath+'turkeyvsham.mp3|'+this.audioPath+'turkeyvsham.ogg'});
+					}
 					createjs.Sound.registerPlugin(createjs.HTMLAudioPlugin);  // need this so it doesn't default to Web Audio
 					this.loader.installPlugin(createjs.Sound);					
 				}
